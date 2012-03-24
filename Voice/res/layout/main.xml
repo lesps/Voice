@@ -2,11 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="40pt" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="646dp"
+        android:layout_height="311dp"
+        android:layout_marginTop="50pt"
+        android:onClick="onContinueClick"
+        android:text="@string/cont"
+        android:textSize="60pt" />
 
 </LinearLayout>

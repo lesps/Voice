@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, VoiceActivity!</string>
     <string name="app_name">Voice</string>
+    <string name="welcome">Welcome to Consumer Voice!</string>
+    <string name="cont">Continue</string>
 
 </resources>
