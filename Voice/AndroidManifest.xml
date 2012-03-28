@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".QuestionActivity" android:label="@string/questionapp_str"></activity>
     </application>
 
 </manifest>

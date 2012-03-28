@@ -5,5 +5,6 @@
     <string name="app_name">Voice</string>
     <string name="welcome">Welcome to Consumer Voice!</string>
     <string name="cont">Continue</string>
+    <string name="questionapp_str">QuestionApplication</string>
 
 </resources>

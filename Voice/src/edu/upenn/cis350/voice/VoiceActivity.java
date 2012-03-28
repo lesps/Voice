@@ -13,7 +13,8 @@ public class VoiceActivity extends Activity {
         setContentView(R.layout.main);
     }
     
-    public void onContinueclick(View view){
+    public void onContinueClick(View view){
     	Intent i = new Intent(this, QuestionActivity.class);
+    	startActivity(i);
     }
 }
