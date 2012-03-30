@@ -16,7 +16,6 @@ public class QuestionActivity extends Activity {
 	public static final int ACTIVITY_DragQuestion = 6;
 	
 	private ArrayList<Question> questionList;
-	private Question currentQuestion;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,38 +24,14 @@ public class QuestionActivity extends Activity {
         questionList = new ArrayList<Question>();
         //TODO Import questions from the database object, store these in questionList
         
-        
+        for(int i = 0; i < questionList.size(); i++)
+        	switchQuestion(questionList.get(i));
     }	
 	
 	
-	public void switchQuestion(){
+	public void switchQuestion(Question q){
 		
 		Intent i;
-		switch(currentQuestion.getType()){
-		
-			case BUTTON:
-				i = new Intent(this, ButtonQuestionActivity.class);
-				startActivityForResult(i, QuestionActivity.ACTIVITY_ButtonQuestion);
-				break;
-			case SLIDER:
-				i = new Intent(this, SliderQuestionActivity.class);
-				startActivityForResult(i, QuestionActivity.ACTIVITY_SliderQuestion);
-			case DRAG:
-				i = new Intent(this, DragQuestionActivity.class);
-				startActivityForResult(i, QuestionActivity.ACTIVITY_DragQuestion);
-				break;
-			case PICTURE:
-				i = new Intent(this, PictureQuestionActivity.class);
-				startActivityForResult(i, QuestionActivity.ACTIVITY_PictureQuestion);
-				break;
-			case WHEEL:
-				i = new Intent(this, WheelQuestionActivity.class);
-				startActivityForResult(i, QuestionActivity.ACTIVITY_WheelQuestion);
-				break;
-			case DRAWING:
-				i = new Intent(this, DrawingQuestionActivity.class);
-				startActivityForResult(i, QuestionActivity.ACTIVITY_DrawingQuestion);
-				break;
-		}
+			
 	}
 }

@@ -22,7 +22,7 @@ package edu.upenn.cis350.voice;
         }
         public void onContinueClick(View view){
     	//Create and intent using the new activity and the class to be created (A quiz activity)
-    	Intent i = new Intent(VoiceActivity.this, NewQuestionEvent.class);
+    	Intent i = new Intent(VoiceActivity.this, QuestionActivity.class);
     	
     	startActivity(i);
     

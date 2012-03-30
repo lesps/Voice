@@ -10,4 +10,12 @@ public class Question {
 		this.text = text;
 		this.type = type;
 	}
+	
+	public Type getType(){
+		return type;
+	}
+	
+	public String getText(){
+		return text;
+	}
 }
