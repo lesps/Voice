@@ -8,12 +8,7 @@ import android.os.Bundle;
 
 public class QuestionActivity extends Activity {
 	
-	public static final int ACTIVITY_ButtonQuestion = 1;
-	public static final int ACTIVITY_SliderQuestion = 2;
-	public static final int ACTIVITY_DrawingQuestion = 3;
-	public static final int ACTIVITY_PictureQuestion = 4;
-	public static final int ACTIVITY_WheelQuestion = 5;
-	public static final int ACTIVITY_DragQuestion = 6;
+	public static final int ACTIVITY_NewQuestion = 1;
 	
 	private ArrayList<Question> questionList;
 	
@@ -23,7 +18,6 @@ public class QuestionActivity extends Activity {
         
         questionList = new ArrayList<Question>();
         //TODO Import questions from the database object, store these in questionList
-        
         for(int i = 0; i < questionList.size(); i++)
         	switchQuestion(questionList.get(i));
     }	
@@ -31,7 +25,9 @@ public class QuestionActivity extends Activity {
 	
 	public void switchQuestion(Question q){
 		
-		Intent i;
-			
+		Intent i = new Intent(this, NewQuestionEvent.class);
+		i.putExtra("Type", q.getType());
+		i.putExtra("Text", q.getText());
+		startActivityForResult(i, QuestionActivity.ACTIVITY_NewQuestion);
 	}
 }

@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.content.Context;
 import android.view.View;
 
-public class DragQuestionView extends View {
+public class DragQuestionView extends VoiceView {
 		
 	public DragQuestionView(Context c) {
 		super(c);
@@ -26,5 +26,9 @@ public class DragQuestionView extends View {
 		
 		invalidate();
 		return true;
+	}
+	
+	public int getAnswer(){
+		return 0;
 	}
 }

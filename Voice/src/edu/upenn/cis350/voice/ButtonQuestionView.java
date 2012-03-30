@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.content.Context;
 import android.view.View;
 
-public class ButtonQuestionView extends View {
+public class ButtonQuestionView extends VoiceView {
 
 	public ButtonQuestionView(Context c) {
 		super(c);
@@ -27,4 +27,7 @@ public class ButtonQuestionView extends View {
 		return true;
 	}
 
+	public int getAnswer(){
+		return 0;
+	}
 }

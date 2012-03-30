@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.content.Context;
 import android.view.View;
 
-public class WheelQuestionView extends View {
+public class WheelQuestionView extends VoiceView {
 
 	public WheelQuestionView(Context c) {
 		super(c);
@@ -27,4 +27,7 @@ public class WheelQuestionView extends View {
 		return true;
 	}
 
+	public int getAnswer(){
+		return 0;
+	}
 }
