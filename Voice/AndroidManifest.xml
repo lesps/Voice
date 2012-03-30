@@ -19,6 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuestionActivity" android:label="@string/questionapp_str"></activity>
+        <activity android:label="@string/activity_buttonquestion" android:name=".ButtonQuestionActivity"></activity>
+        <activity android:name=".WheelQuestionActivity" android:label="@string/activity_wheelquestion"></activity>
+        <activity android:label="@string/activity_sliderquestion" android:name=".SliderQuestionActivity"></activity>
+        <activity android:label="@string/activity_dragquestion" android:name=".DragQuestionActivity"></activity>
+        <activity android:label="@string/activity_picturequestion" android:name=".PictureQuestionActivity"></activity>
+        <activity android:label="@string/activity_drawingquestion" android:name=".DrawingQuestionActivity"></activity>
     </application>
 
 </manifest>

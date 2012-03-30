@@ -6,5 +6,11 @@
     <string name="welcome">Welcome to Consumer Voice!</string>
     <string name="cont">Continue</string>
     <string name="questionapp_str">QuestionApplication</string>
+    <string name="activity_buttonquestion">ButtonQuestionActivity</string>
+    <string name="activity_wheelquestion">Wheel Activity</string>
+    <string name="activity_sliderquestion">Slider Question</string>
+    <string name="activity_dragquestion">Drag Quetsion</string>
+    <string name="activity_picturequestion">Picture Question</string>
+    <string name="activity_drawingquestion">Drawing Question</string>
 
 </resources>
