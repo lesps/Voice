@@ -15,7 +15,7 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:textSize="48dp"
-		    android:text="@string/wheel_question"
+		    android:text="@string/wheel_question" />
 	</LinearLayout>
 	
     <edu.upenn.cis350.voice.WheelQuestionView
