@@ -9,6 +9,9 @@
     <string name="wheel_question">This would be a question with a wheel-type answer.</string>
     <string name="drawing_question">This would be a question with a drawing-type answer.</string>
     <string name="button_question">This would be a question with a button-type answer.</string>
+    <string name="drag_question">This would be a question with a drag-type answer.</string>
+    <string name="picture_question">This would be a question with a picture-type answer.</string>
+    <string name="slider_question">This would be a question with a slider-type answer.</string>
     <string name="back">Go Back</string>
     <string name="next">Next</string>
 

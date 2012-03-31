@@ -4,13 +4,13 @@ import android.util.AttributeSet;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.content.Context;
-import android.view.View;
 
-public class PictureQuestionView extends View {
+public class PictureQuestionView extends VoiceView {
 
 	public PictureQuestionView(Context c) {
 		super(c);
 	}
+	
 	public PictureQuestionView(Context c, AttributeSet a) {
 		super(c, a);
 	}
@@ -25,6 +25,11 @@ public class PictureQuestionView extends View {
 		
 		invalidate();
 		return true;
+	}
+	
+	@Override
+	public int getAnswer() {
+		return 0;
 	}
 
 }

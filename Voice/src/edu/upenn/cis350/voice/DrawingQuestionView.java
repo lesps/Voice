@@ -27,6 +27,7 @@ public class DrawingQuestionView extends VoiceView {
 		return true;
 	}
 	
+	@Override
 	public int getAnswer(){
 		return 0;
 	}
