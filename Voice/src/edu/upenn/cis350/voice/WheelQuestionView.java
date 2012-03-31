@@ -4,7 +4,6 @@ import android.util.AttributeSet;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.content.Context;
-import android.view.View;
 
 public class WheelQuestionView extends VoiceView {
 
