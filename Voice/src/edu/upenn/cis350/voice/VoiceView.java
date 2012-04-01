@@ -14,5 +14,9 @@ public abstract class VoiceView extends View {
 		super(c,a);
 	}
 	
+	/**
+	 * Returns the answer given, as a number between 0 and 10.
+	 * @return The answer given.
+	 */
 	public abstract int getAnswer();
 }
