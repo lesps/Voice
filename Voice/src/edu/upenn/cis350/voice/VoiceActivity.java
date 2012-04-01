@@ -16,8 +16,8 @@ package edu.upenn.cis350.voice;
             setContentView(R.layout.main);
             
             //Creates an instance of the Data Access Object
-            dataManager= new DBManager(this);
-            dataManager.open();
+//            dataManager= new DBManager(this);
+//            dataManager.open();
             
         }
         public void onContinueClick(View view){

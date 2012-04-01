@@ -4,10 +4,57 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 	>
+	
+	<LinearLayout
+	    android:id="@+id/linearLayoutText"
+	    android:layout_width="fill_parent"
+	    android:layout_height="80dp" >
+
+		<TextView
+		    android:id="@+id/buttonText"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:textSize="48dp"
+		    android:text="@string/drawing_question" />
+
+	</LinearLayout>
+	
     <edu.upenn.cis350.voice.ButtonQuestionView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1" 
         />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="fill" >
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:onClick="onBackButtonClick"
+            android:text="@string/back" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="300dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.50"
+            android:orientation="vertical" >
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:onClick="onNextButtonClick"
+            android:text="@string/next" />
+    </LinearLayout>
 
 </LinearLayout>

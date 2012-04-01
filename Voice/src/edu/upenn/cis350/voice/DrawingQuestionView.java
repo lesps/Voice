@@ -4,7 +4,6 @@ import android.util.AttributeSet;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.content.Context;
-import android.view.View;
 
 public class DrawingQuestionView extends VoiceView {
 
@@ -28,6 +27,7 @@ public class DrawingQuestionView extends VoiceView {
 		return true;
 	}
 	
+	@Override
 	public int getAnswer(){
 		return 0;
 	}
