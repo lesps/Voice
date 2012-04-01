@@ -62,6 +62,7 @@ public class DragQuestionView extends VoiceView {
 		pic1.set((float)pic1topx, (float)pic1topy, (float)pic1bottomx, (float)pic1bottomy);
 		pic2.set((float)pic2topx, (float)pic2topy, (float)pic2bottomx, (float)pic2bottomy);
 		pic3.set((float)pic3topx, (float)pic3topy, (float)pic3bottomx, (float)pic3bottomy);
+		/**
 		canvas.drawRect(square, paint);
 		Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempimage);
 		canvas.drawBitmap(pic, null, pic1, paint);
@@ -69,6 +70,7 @@ public class DragQuestionView extends VoiceView {
 		canvas.drawBitmap(pic, null, pic2, paint);
 		pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempimage3);
 		canvas.drawBitmap(pic, null, pic3, paint);
+		**/
 	}
 	
 	@Override

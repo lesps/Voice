@@ -27,7 +27,6 @@
 	    android:paddingLeft="100dp"
         android:progressDrawable="@drawable/scrollbar_progress"
         android:indeterminateOnly="false" 
-        android:thumb="@drawable/scrollthumb"
 />
     
     <LinearLayout
