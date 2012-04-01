@@ -13,5 +13,8 @@
     <string name="slider_question">This would be a question with a slider-type answer.</string>
     <string name="back">Go Back</string>
     <string name="next">Next</string>
+    <string name="activity_newquestion">Question</string>
+    <string name="activity_thankyou">Thank You</string>
+    <string name="activity_questionactivity">Questions</string>
 
 </resources>

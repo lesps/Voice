@@ -18,8 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name="NewQuestionEvent" />
+        <activity android:name=".NewQuestionActivity" android:label="@string/activity_newquestion"></activity>
+        <activity android:name=".ThankYouActivity" android:label="@string/activity_thankyou"></activity>
+        <activity android:name=".QuestionActivity" android:label="@string/activity_questionactivity"></activity>
     </application>
 
 </manifest>

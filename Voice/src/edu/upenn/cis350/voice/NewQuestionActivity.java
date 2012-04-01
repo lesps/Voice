@@ -6,13 +6,11 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class NewQuestionEvent extends Activity{
+public class NewQuestionActivity extends Activity{
 	private VoiceView userView;
 	private TextView tview;
 	private String text;
 	private Type type;
-	
-	private Intent i;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -63,15 +61,17 @@ public class NewQuestionEvent extends Activity{
 	}
 
 	public void onBackButtonClick(View view) {
+		Intent i = new Intent();
 		i.putExtra("Answer", userView.getAnswer());
-		i.putExtra("NextQuestion", true); //Put true if moving forward
+		i.putExtra("NextQuestion", false); //Put true if moving forward
 		setResult(RESULT_OK, i);
 		finish();
 	}
 
 	public void onNextButtonClick(View view) {
+		Intent i = new Intent();
 		i.putExtra("Answer", userView.getAnswer());
-		i.putExtra("NextQuestion", false); //Put false if moving backward
+		i.putExtra("NextQuestion", true); //Put false if moving backward
 		setResult(RESULT_OK, i);
 		finish();
 	}
