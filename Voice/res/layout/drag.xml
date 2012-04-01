@@ -4,15 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <edu.upenn.cis350.voice.DragQuestionView
-        android:id="@+id/dragQuestionView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" />
-
-	>
-	
-	<LinearLayout
+   	<LinearLayout
 	    android:id="@+id/linearLayoutText"
 	    android:layout_width="fill_parent"
 	    android:layout_height="80dp" >
@@ -24,8 +16,21 @@
 		    android:textSize="48dp"
 		    android:text="@string/drag_question" />
 
+	</LinearLayout> 
+	
+	<LinearLayout
+	    android:id="@+id/linearLayoutText"
+	    android:layout_width="fill_parent"
+	    android:layout_height="400dp" >
+	    
+	    <edu.upenn.cis350.voice.DragQuestionView
+	        android:id="@+id/dragQuestionView"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1" />
+
 	</LinearLayout>
-    
+	
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"

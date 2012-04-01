@@ -18,12 +18,12 @@
 		    android:text="@string/slider_question" />
 
 	</LinearLayout>
-	
-    <edu.upenn.cis350.voice.SliderQuestionView
-        android:id="@+id/sliderQuestionView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" />
+
+	<edu.upenn.cis350.voice.SliderQuestionView
+	    android:id="@+id/sliderQuestionView"
+	    android:layout_width="938dp"
+	    android:layout_height="fill_parent"
+	    android:paddingLeft="100dp" />
     
     <LinearLayout
         android:id="@+id/linearLayout1"
