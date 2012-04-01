@@ -2,6 +2,8 @@ package edu.upenn.cis350.voice;
 
 import java.util.ArrayList;
 
+import edu.upenn.cis350.voice.db.DBManager;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,15 +11,18 @@ import android.os.Bundle;
 public class QuestionActivity extends Activity {
 	
 	public static final int ACTIVITY_NewQuestion = 1;
+    private DBManager dataManager;
 	
 	private ArrayList<Question> questionList;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        questionList = new ArrayList<Question>();
-        //TODO Import questions from the database object, store these in questionList
+        //Creates an instance of the Data Access Object
+        dataManager= new DBManager(this);
+        dataManager.open();
+        questionList = dataManager.getAllQuestions();
+        dataManager.close();
         for(int i = 0; i < questionList.size(); i++)
         	switchQuestion(questionList.get(i));
     }	
