@@ -15,7 +15,7 @@ public class WheelQuestionView extends VoiceView {
 	}
 	
 	protected void onDraw(Canvas canvas) {
-		
+		canvas.drawRGB(126, 93, 182);
 	}
 	
 	@Override
