@@ -42,9 +42,6 @@ public class NewQuestionEvent extends Activity{
 		case BUTTON:
 			setContentView(R.layout.button);
 			break;
-		case DRAWING:
-			setContentView(R.layout.drawing);
-			break;
 		}
 	}
 
