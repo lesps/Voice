@@ -1,5 +1,5 @@
 package edu.upenn.cis350.voice;
 
 public enum Type {
-	SLIDER, WHEEL, PICTURE, BUTTON,DRAG	
+	SLIDER, WHEEL, PICTURE, BUTTON, DRAG	
 }

@@ -18,12 +18,12 @@
 		    android:text="@string/drawing_question" />
 
 	</LinearLayout>
-	
-    <edu.upenn.cis350.voice.ButtonQuestionView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" 
-        />
+
+	<edu.upenn.cis350.voice.ButtonQuestionView
+	    android:id="@+id/buttonQuestionView"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
