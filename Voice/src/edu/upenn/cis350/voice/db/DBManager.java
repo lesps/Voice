@@ -9,6 +9,7 @@ import java.util.List;
 import edu.upenn.cis350.voice.Question;
 import edu.upenn.cis350.voice.Type;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -33,14 +34,17 @@ public class DBManager {
 		dbHelper.close();
 	}
 	
-	//Method to add questions
-	public void insert(Question entry){
-		
+	//Method to add questions. Returns -1 if not successful
+	public long insertQuestion(Question entry){
+		ContentValues values = new ContentValues();
+		values.put("text", entry.getText());
+		values.put("type", entry.getType().name());
+		return database.insert(DBHelper.DB_NAME, null, values);
 	}
 	
 	//Method to delete entries
-	public void delete(String entry){
-		
+	public void deleteQuestion(Question entry){
+		database.delete(dbHelper.DB_NAME, "text = " + entry.getText() , null);
 	}
 	
 	//Method to get all questions of a certain type
