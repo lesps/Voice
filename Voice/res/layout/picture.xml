@@ -3,7 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-	>
 	
 	<LinearLayout
 	    android:id="@+id/linearLayoutText"
@@ -19,11 +18,40 @@
 
 	</LinearLayout>
 	
-    <edu.upenn.cis350.voice.PictureQuestionView
-        android:id="@+id/pictureQuestionView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" />
+	<LinearLayout
+	    android:id="@+id/pictureQuestionView"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+    	<edu.upenn.cis350.voice.PictureQuestionView
+        	android:id="@+id/buttonOne"
+        	android:tag = "one"
+        	android:layout_width= "wrap_content"
+        	android:layout_height="wrap_content"
+       		android:layout_weight="1"
+       		android:src = "@drawable/tempimage" />
+    	<edu.upenn.cis350.voice.PictureQuestionView
+        	android:id="@+id/buttonTwo"
+        	android:tag = "two"
+        	android:layout_width= "wrap_content"
+        	android:layout_height="wrap_content"
+       		android:layout_weight="1"
+       		android:src = "@drawable/tempimage" />
+    	<edu.upenn.cis350.voice.PictureQuestionView
+        	android:id="@+id/buttonThree"
+        	android:tag = "three"
+        	android:layout_width= "wrap_content"
+        	android:layout_height="wrap_content"
+       		android:layout_weight="1"
+       		android:src = "@drawable/tempimage" />
+    	<edu.upenn.cis350.voice.PictureQuestionView
+        	android:id="@+id/buttonFour"
+        	android:tag = "four"
+        	android:layout_width= "wrap_content"
+        	android:layout_height="wrap_content"
+       		android:layout_weight="1"
+       		android:src = "@drawable/tempimage" />
+    	
+    	</LinearLayout>
     
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -47,7 +75,7 @@
             android:orientation="vertical" >
 
         </LinearLayout>
-
+        
         <Button
             android:id="@+id/next"
             android:layout_width="wrap_content"
