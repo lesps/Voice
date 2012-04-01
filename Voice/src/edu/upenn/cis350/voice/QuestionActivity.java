@@ -2,6 +2,8 @@ package edu.upenn.cis350.voice;
 
 import java.util.ArrayList;
 
+import edu.upenn.cis350.voice.db.DBManager;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ public class QuestionActivity extends Activity {
 	
 	public static final int ACTIVITY_NewQuestion = 1;
 	public static final int ACTIVITY_End = 2;
+    private DBManager dataManager;
 	
 	private int totalScore;
 	
@@ -26,6 +29,11 @@ public class QuestionActivity extends Activity {
         //TODO Import questions from the database object, store these in questionList
         numQuestion = 0;
         switchQuestion(true);
+        //Creates an instance of the Data Access Object
+        dataManager= new DBManager(this);
+        dataManager.open();
+        questionList = dataManager.getAllQuestions();
+        dataManager.close();
     }	
 	
 	
