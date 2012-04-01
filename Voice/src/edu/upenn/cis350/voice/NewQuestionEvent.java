@@ -29,18 +29,23 @@ public class NewQuestionEvent extends Activity{
 
 		case SLIDER:
 			setContentView(R.layout.slider);
+			view = (VoiceView) findViewById(R.id.sliderQuestionView);
 			break;
 		case WHEEL:
 			setContentView(R.layout.wheel);
+			view = (VoiceView) findViewById(R.id.wheelQuestionView);
 			break;
 		case PICTURE:
 			setContentView(R.layout.picture);
+			view = (VoiceView) findViewById(R.id.pictureQuestionView);
 			break;
 		case DRAG:
 			setContentView(R.layout.drag);
+			view = (VoiceView) findViewById(R.id.dragQuestionView);
 			break;
 		case BUTTON:
 			setContentView(R.layout.button);
+			view = (VoiceView) findViewById(R.id.buttonQuestionView);
 			break;
 		}
 	}
