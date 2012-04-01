@@ -25,8 +25,8 @@ public class QuestionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		totalScore = 0; 
 		questionList = new ArrayList<Question>();
-		questionList.add(new Question("stuff", Type.PICTURE));
-		questionList.add(new Question("tools", Type.DRAG));
+		questionList.add(new Question("stuff", Type.BUTTON));
+		questionList.add(new Question("tools", Type.WHEEL));
 		//TODO Import questions from the database object, store these in questionList
 		numQuestion = -1;
 		switchQuestion(true);
