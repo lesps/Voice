@@ -15,15 +15,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
 	//Database name
-	private static final String DB_NAME = "voice.db";
+	public static final String DB_NAME = "questions.db";
 	//Not sure what this value means, will look into it later
 	private static final int DATABASE_VERSION = 1;
 	// Database creation sql statement
 	private static final String DATABASE_CREATE = 
-			"CREATE TABLE voice(" 	+ 
-			"_id integer primary key autoincrement, " + 
-			"content TEXT NOT NULL" +
-			"timestamp INTEGER NOT NULL)";
+			"create table voice" +
+			"(question varchar, type varchar);";
 
 	//Context must be the activity that creates the database.
 	public DBHelper(Context context) {
@@ -40,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		//drops db and creates a new one
-		db.execSQL("DROP TABLE IF EXISTS voice");
+		db.execSQL("DROP TABLE IF EXISTS " + DB_NAME + ";");
 		onCreate(db);
 	}
 
