@@ -6,7 +6,9 @@ import edu.upenn.cis350.voice.db.DBManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 
 public class QuestionActivity extends Activity {
 
@@ -25,19 +27,29 @@ public class QuestionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		totalScore = 0; 
 		questionList = new ArrayList<Question>();
-		questionList.add(new Question("stuff", Type.DRAG));
-		questionList.add(new Question("tools", Type.BUTTON));
-		//TODO Import questions from the database object, store these in questionList
+//		questionList.add(new Question("stuff", Type.DRAG));
+//		questionList.add(new Question("tools", Type.BUTTON));
+		try{
+			//Creates an instance of the Data Access Object
+			dataManager= new DBManager(this);
+			dataManager.open();
+			//READ THIS PLZ: Uncomment the delete lines if you don't want the database to keep building up
+			//with the sample questions
+//			dataManager.deleteQuestion(new Question("\"stuff\"", Type.DRAG));
+//			dataManager.deleteQuestion(new Question("\"tools\"", Type.BUTTON));
+			dataManager.insertQuestion(new Question("stuff", Type.DRAG));
+			dataManager.insertQuestion(new Question("tools", Type.BUTTON));
+			questionList = dataManager.getAllQuestions();
+		    dataManager.close();
+		    //Test to check whether db works
+			for(Question q: questionList){
+				Log.i("Question retrived from DB", "text = " + q.getText() + " type = "+ q.getType());
+			}
+		}catch (SQLiteException e){
+			Log.i("exception", e.getMessage());
+		}
 		numQuestion = -1;
 		switchQuestion(true);
-		//Creates an instance of the Data Access Object
-
-		/**
-        dataManager= new DBManager(this);
-        dataManager.open();
-        questionList = dataManager.getAllQuestions();
-        dataManager.close();
-		 **/
 	}	
 
 
