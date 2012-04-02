@@ -15,12 +15,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
 	//Database name
-	public static final String DB_NAME = "questions.db";
+	public static final String DB_NAME = "voice";
+	//Names of tables
+	public static final String QUS_TABLE = "questions";
+
 	//Not sure what this value means, will look into it later
 	private static final int DATABASE_VERSION = 1;
 	// Database creation sql statement
 	private static final String DATABASE_CREATE = 
-			"create table voice" +
+			"create table " + QUS_TABLE +
 			"(question varchar, type varchar);";
 
 	//Context must be the activity that creates the database.
@@ -32,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		//Executes query to create db
-		db.execSQL(DATABASE_CREATE);		
+		db.execSQL(DATABASE_CREATE);
 	}
 
 	@Override
