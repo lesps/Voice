@@ -30,9 +30,8 @@ public class QuestionActivity extends Activity {
 		//TODO Import questions from the database object, store these in questionList
 		numQuestion = -1;
 		switchQuestion(true);
-		//Creates an instance of the Data Access Object
-		
 		/**
+		//Creates an instance of the Data Access Object
         dataManager= new DBManager(this);
         dataManager.open();
         questionList = dataManager.getAllQuestions();

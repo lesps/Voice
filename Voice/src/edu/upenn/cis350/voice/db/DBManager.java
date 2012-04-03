@@ -14,6 +14,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class DBManager {
 	// Database fields
@@ -37,20 +38,22 @@ public class DBManager {
 	//Method to add questions. Returns -1 if not successful
 	public long insertQuestion(Question entry){
 		ContentValues values = new ContentValues();
-		values.put("text", entry.getText());
+//		Log.i("debug message", "insert " + entry.getText()+ " into question");
+		values.put("question", entry.getText());
 		values.put("type", entry.getType().name());
-		return database.insert(DBHelper.DB_NAME, null, values);
+//		Log.i("content values", values.toString());
+		return database.insert(DBHelper.QUS_TABLE, null, values);
 	}
 	
 	//Method to delete entries
 	public void deleteQuestion(Question entry){
-		database.delete(dbHelper.DB_NAME, "text = " + entry.getText() , null);
+		database.delete(DBHelper.QUS_TABLE, "question = " + entry.getText() , null);
 	}
 	
 	//Method to get all questions of a certain type
 	public ArrayList<Question> getQuestionsOfType(Type t){
 		ArrayList<Question> questions= new ArrayList<Question>();
-		Cursor cursor = database.query(DBHelper.DB_NAME, querycolumns, "type = " + t.name(), null, null, null, null);
+		Cursor cursor = database.query(DBHelper.QUS_TABLE, querycolumns, "type = " + t.name(), null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Question q = cursorToQuestion(cursor);
@@ -65,7 +68,7 @@ public class DBManager {
 	//Method to get all questions
 	public ArrayList<Question> getAllQuestions(){
 		ArrayList<Question> questions= new ArrayList<Question>();
-		Cursor cursor = database.query(DBHelper.DB_NAME, querycolumns, null, null, null, null, null);
+		Cursor cursor = database.query(DBHelper.QUS_TABLE, querycolumns, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Question q = cursorToQuestion(cursor);
