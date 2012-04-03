@@ -8,7 +8,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class PictureQuestionView extends ImageButton {
+public class PictureQuestionView extends ImageButton implements VoiceViewI{
 	private int answerNum;
 	
 	public PictureQuestionView(Context c) {

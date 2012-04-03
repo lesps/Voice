@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 
 public class NewQuestionActivity extends Activity{
-	private VoiceView userView;
+	private VoiceViewI userView;
 	private TextView tview;
 	private String text;
 	private Type type;
@@ -29,30 +29,29 @@ public class NewQuestionActivity extends Activity{
 		text = (String)b.get("Text");
 
 		switch(type){
-
 			case SLIDER:
 				setContentView(R.layout.slider);
-				userView = (VoiceView) findViewById(R.id.sliderQuestionView);
+				userView = (VoiceViewI) findViewById(R.id.sliderQuestionView);
 				tview = (TextView) findViewById(R.id.sliderText);
 				break;
 			case WHEEL:
 				setContentView(R.layout.wheel);
-				userView = (VoiceView) findViewById(R.id.wheelQuestionView);
+				userView = (VoiceViewI) findViewById(R.id.wheelQuestionView);
 				tview = (TextView) findViewById(R.id.wheelText);
 				break;
 			case PICTURE:
 				setContentView(R.layout.picture);
-				userView = (VoiceView) findViewById(R.id.pictureQuestionView);
+				userView = (VoiceViewI) findViewById(R.id.pictureQuestionView);
 				tview = (TextView) findViewById(R.id.pictureText);
 				break;
 			case DRAG:
 				setContentView(R.layout.drag);
-				userView = (VoiceView) findViewById(R.id.dragQuestionView);
+				userView = (VoiceViewI) findViewById(R.id.dragQuestionView);
 				tview = (TextView) findViewById(R.id.dragText);
 				break;
 			case BUTTON:
 				setContentView(R.layout.button);
-				userView = (VoiceView) findViewById(R.id.buttonQuestionView);
+				userView = (VoiceViewI) findViewById(R.id.buttonQuestionView);
 				tview = (TextView) findViewById(R.id.buttonText);
 				break;
 		}

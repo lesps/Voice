@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.content.Context;
 
-public class SliderQuestionView extends ProgressBar {
+public class SliderQuestionView extends ProgressBar implements VoiceViewI {
 	 private OnProgressChangeListener listener;
 	 
      private static int padding = 2;

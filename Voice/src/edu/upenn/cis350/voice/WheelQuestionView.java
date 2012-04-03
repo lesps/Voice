@@ -3,9 +3,10 @@ package edu.upenn.cis350.voice;
 import android.util.AttributeSet;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
+import android.view.View;
 import android.content.Context;
 
-public class WheelQuestionView extends VoiceView {
+public class WheelQuestionView extends View implements VoiceViewI {
 
 	public WheelQuestionView(Context c) {
 		super(c);

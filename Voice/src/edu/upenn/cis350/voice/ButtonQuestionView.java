@@ -4,9 +4,10 @@ import android.util.AttributeSet;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.MotionEvent;
+import android.view.View;
 import android.content.Context;
 
-public class ButtonQuestionView extends VoiceView {
+public class ButtonQuestionView extends View implements VoiceViewI {
 	
 	public ButtonQuestionView(Context c) {
 		super(c);
