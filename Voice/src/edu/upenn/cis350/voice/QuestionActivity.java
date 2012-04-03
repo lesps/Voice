@@ -6,6 +6,7 @@ import edu.upenn.cis350.voice.db.DBManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 
 public class QuestionActivity extends Activity {
@@ -25,18 +26,24 @@ public class QuestionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		totalScore = 0; 
 		questionList = new ArrayList<Question>();
-		questionList.add(new Question("stuff", Type.DRAG));
-		questionList.add(new Question("tools", Type.WHEEL));
-		//TODO Import questions from the database object, store these in questionList
+//		questionList.add(new Question("stuff", Type.DRAG));
+//		questionList.add(new Question("tools", Type.WHEEL));
+		//Creates an instance of the Data Access Object
+		try{
+			dataManager= new DBManager(this);
+			dataManager.open();
+			//IMPORTANT: The database stores all questions stored in all previous runs of the app
+			//Uncomment the delete line if you don't want the database to keep building up
+			dataManager.deleteAll(); //Clears the database
+			dataManager.insertQuestion(new Question("stuff", Type.DRAG));
+			dataManager.insertQuestion(new Question("tools", Type.WHEEL));
+			questionList = dataManager.getAllQuestions();
+		    dataManager.close();
+		}catch(SQLiteException e){
+			//Catching exception so the app doesn't crash and just goes to the thank you screen
+		}
 		numQuestion = -1;
 		switchQuestion(true);
-		/**
-		//Creates an instance of the Data Access Object
-        dataManager= new DBManager(this);
-        dataManager.open();
-        questionList = dataManager.getAllQuestions();
-        dataManager.close();
-        **/
 	}	
 
 

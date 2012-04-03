@@ -49,6 +49,10 @@ public class DBManager {
 	public void deleteQuestion(Question entry){
 		database.delete(DBHelper.QUS_TABLE, "question = " + entry.getText() , null);
 	}
+	//Method to delete all questions
+	public void deleteAll(){
+		database.delete(DBHelper.QUS_TABLE, null , null);
+	}
 	
 	//Method to get all questions of a certain type
 	public ArrayList<Question> getQuestionsOfType(Type t){
