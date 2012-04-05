@@ -27,9 +27,9 @@ public class QuestionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		totalScore = 0; 
 		questionList = new ArrayList<Question>();
-		questionList.add(new Question("stuff", Type.DRAG));
+		questionList.add(new Question("How do you feel right now?", Type.DRAG));
 		questionList.add(new Question("How was your day today?", Type.BUTTON));
-		questionList.add(new Question("", Type.SLIDER));
+		questionList.add(new Question("How would you rate the quality of your care?", Type.SLIDER));
 		//Creates an instance of the Data Access Object
 		/**
 		try{

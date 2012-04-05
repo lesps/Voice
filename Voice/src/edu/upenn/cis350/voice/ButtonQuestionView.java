@@ -48,29 +48,29 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 	protected void onDraw(Canvas canvas) {
 		canvas.drawRGB(126, 93, 182);
 		if (_selected == _superHappy)
-			canvas.drawBitmap(_pressedSuperHappy, 160, 160, null);
+			canvas.drawBitmap(_pressedSuperHappy, 400, 160, null);
 		else
-			canvas.drawBitmap(_superHappy, 160, 160, null);
+			canvas.drawBitmap(_superHappy, 400, 160, null);
 		if (_selected == _happy)
-			canvas.drawBitmap(_pressedHappy, 320, 160, null);
+			canvas.drawBitmap(_pressedHappy, 560, 160, null);
 		else
-			canvas.drawBitmap(_happy, 320, 160, null);
+			canvas.drawBitmap(_happy, 560, 160, null);
 		if (_selected == _neutral)
-			canvas.drawBitmap(_pressedNeutral, 480, 160, null);
+			canvas.drawBitmap(_pressedNeutral, 720, 160, null);
 		else
-			canvas.drawBitmap(_neutral, 480, 160, null);
+			canvas.drawBitmap(_neutral, 720, 160, null);
 		if (_selected == _sad)
-			canvas.drawBitmap(_pressedSad, 160, 320, null);
+			canvas.drawBitmap(_pressedSad, 400, 320, null);
 		else
-			canvas.drawBitmap(_sad, 160, 320, null);
+			canvas.drawBitmap(_sad, 400, 320, null);
 		if (_selected == _crying)
-			canvas.drawBitmap(_pressedCrying, 320, 320, null);
+			canvas.drawBitmap(_pressedCrying, 560, 320, null);
 		else
-			canvas.drawBitmap(_crying, 320, 320, null);
+			canvas.drawBitmap(_crying, 560, 320, null);
 		if (_selected == _angry)
-			canvas.drawBitmap(_pressedAngry, 480, 320, null);
+			canvas.drawBitmap(_pressedAngry, 720, 320, null);
 		else
-			canvas.drawBitmap(_angry, 480, 320, null);
+			canvas.drawBitmap(_angry, 720, 320, null);
 	}
 	
 	@Override
@@ -80,27 +80,27 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		float y = event.getY();
 		
 		if (eventAction==MotionEvent.ACTION_DOWN) {
-			if (x >= 10 && x <= 110 && y >= 10 && y <= 110) { 		//SuperHappy
+			if (x >= 400 && x <= 500 && y >= 160 && y <= 260) { 		//SuperHappy
 				_selected = _superHappy;
 				return true;
 			}
-			else if (x >= 110 && x <= 210 && y >= 110 && y <= 210) { 	//Happy
+			else if (x >= 560 && x <= 660 && y >= 160 && y <= 260) { 	//Happy
 				_selected = _happy;
 				return true;
 			}
-			else if (x >= 220 && x <= 320 && y >= 220 && y <= 320) {	//Neutral
+			else if (x >= 720 && x <= 820 && y >= 160 && y <= 260) {	//Neutral
 				_selected = _neutral;
 				return true;
 			}
-			else if (x >= 330 && x <= 430 && y >= 330 && y <= 430) {	//Sad
+			else if (x >= 400 && x <= 500 && y >= 320 && y <= 420) {	//Sad
 				_selected = _sad;
 				return true;
 			}
-			else if (x >= 440 && x <= 540 && y >= 440 && y <= 540) {	//Crying
+			else if (x >= 560 && x <= 660 && y >= 320 && y <= 420) {	//Crying
 				_selected = _crying;
 				return true;
 			}
-			else if (x >= 550 && x <= 650 && y >= 440 && y <= 540) {	//Angry
+			else if (x >= 720 && x <= 820 && y >= 320 && y <= 420) {	//Angry
 				_selected = _angry;
 				return true;
 			}
