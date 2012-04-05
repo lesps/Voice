@@ -48,29 +48,29 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 	protected void onDraw(Canvas canvas) {
 		canvas.drawRGB(126, 93, 182);
 		if (_selected == _superHappy)
-			canvas.drawBitmap(_pressedSuperHappy, 10, 10, null);
+			canvas.drawBitmap(_pressedSuperHappy, 160, 160, null);
 		else
-			canvas.drawBitmap(_superHappy, 10, 10, null);
+			canvas.drawBitmap(_superHappy, 160, 160, null);
 		if (_selected == _happy)
-			canvas.drawBitmap(_pressedHappy, 110, 110, null);
+			canvas.drawBitmap(_pressedHappy, 160, 320, null);
 		else
-			canvas.drawBitmap(_happy, 110, 110, null);
+			canvas.drawBitmap(_happy, 160, 320, null);
 		if (_selected == _neutral)
-			canvas.drawBitmap(_pressedNeutral, 220, 220, null);
+			canvas.drawBitmap(_pressedNeutral, 160, 480, null);
 		else
-			canvas.drawBitmap(_neutral, 220, 220, null);
+			canvas.drawBitmap(_neutral, 160, 480, null);
 		if (_selected == _sad)
-			canvas.drawBitmap(_pressedSad, 330, 330, null);
+			canvas.drawBitmap(_pressedSad, 320, 160, null);
 		else
-			canvas.drawBitmap(_sad, 330, 330, null);
+			canvas.drawBitmap(_sad, 320, 160, null);
 		if (_selected == _crying)
-			canvas.drawBitmap(_pressedCrying, 440, 440, null);
+			canvas.drawBitmap(_pressedCrying, 320, 320, null);
 		else
-			canvas.drawBitmap(_crying, 440, 440, null);
+			canvas.drawBitmap(_crying, 320, 320, null);
 		if (_selected == _angry)
-			canvas.drawBitmap(_pressedAngry, 550, 440, null);
+			canvas.drawBitmap(_pressedAngry, 320, 480, null);
 		else
-			canvas.drawBitmap(_angry, 550, 440, null);
+			canvas.drawBitmap(_angry, 320, 480, null);
 	}
 	
 	@Override
