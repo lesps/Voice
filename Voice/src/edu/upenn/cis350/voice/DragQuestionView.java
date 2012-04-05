@@ -14,18 +14,18 @@ import android.view.View;
 
 public class DragQuestionView extends View implements VoiceViewI {
 	private static RectF square =new RectF(100,200,200,300);
-	private static int pic1topx=5;
-	private static int pic2topx=95;
-	private static int pic3topx=185;
-	private static int pic1topy=5;
-	private static int pic2topy=5;
-	private static int pic3topy = 5;
-	private static int pic1bottomx = 85;
-	private static int pic2bottomx=175;
-	private static int pic3bottomx=265;
-	private static int pic1bottomy=85;
-	private static int pic2bottomy=85;
-	private static int pic3bottomy=85;
+	private static int pic1topx=405;
+	private static int pic2topx=695;
+	private static int pic3topx=985;
+	private static int pic1topy=305;
+	private static int pic2topy=205;
+	private static int pic3topy=405;
+	private static int pic1bottomx=485;
+	private static int pic2bottomx=775;
+	private static int pic3bottomx=1065;
+	private static int pic1bottomy=385;
+	private static int pic2bottomy=285;
+	private static int pic3bottomy=485;
 	private static RectF pic1 = new RectF(pic1topx, pic1topy, pic1bottomx, pic1bottomy);
 	private static RectF pic2 = new RectF(pic2topx, pic2topy, pic2bottomx, pic2bottomy);
 	private static RectF pic3 = new RectF(pic3topx, pic3topy, pic3bottomx, pic3bottomy);
@@ -46,7 +46,7 @@ public class DragQuestionView extends View implements VoiceViewI {
 	
 	protected void onDraw(Canvas canvas) {
 		Color boxColor = new Color();
-		int colorInt = boxColor.rgb(176,196,222);
+		int colorInt = boxColor.rgb(271,196,222);
 		Paint paint = new Paint();
 		paint.setColor(colorInt);
 		if(square.intersect(pic1) ){
@@ -58,7 +58,7 @@ public class DragQuestionView extends View implements VoiceViewI {
 		else if(square.intersect(pic3) ){
 			answerInt = 3;
 		}
-		square.set(100,200,200,300);
+		square.set(590,400,690,500);
 		pic1.set((float)pic1topx, (float)pic1topy, (float)pic1bottomx, (float)pic1bottomy);
 		pic2.set((float)pic2topx, (float)pic2topy, (float)pic2bottomx, (float)pic2bottomy);
 		pic3.set((float)pic3topx, (float)pic3topy, (float)pic3bottomx, (float)pic3bottomy);
