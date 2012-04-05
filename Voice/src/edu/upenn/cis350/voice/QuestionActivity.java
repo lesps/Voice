@@ -2,6 +2,8 @@ package edu.upenn.cis350.voice;
 
 import java.util.ArrayList;
 
+import com.parse.Parse;
+
 import edu.upenn.cis350.voice.db.DBManager;
 
 import android.app.Activity;
@@ -25,6 +27,10 @@ public class QuestionActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		//Initialize the PARSE object
+		Parse.initialize(this, "pPpqQgvXPcLhyGUNTD7ktBhXEsMWVybkyq89kamw", 
+				"5GMEKejNwtcqJBSO6G4gcvjbD2mC6dgMi3XdgnQY"); 
 		totalScore = 0; 
 		questionList = new ArrayList<Question>();
 		questionList.add(new Question("stuff", Type.DRAG));

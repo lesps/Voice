@@ -20,5 +20,6 @@
     <string name="acitivity_confirmation_text">Thank you for taking the survey! After you\'ve submitted your responses, you can claim your reward!</string>
     <string name="submit">Submit</string>
     <string name="activity_confirmationactivity">Voice</string>
+    <string name="button_finish">Finish</string>
 
 </resources>

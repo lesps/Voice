@@ -1,7 +1,9 @@
 package edu.upenn.cis350.voice;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class ThankYouActivity extends Activity {
 	
@@ -11,4 +13,8 @@ public class ThankYouActivity extends Activity {
 		setContentView(R.layout.thankyou);
 	}
 
+	public void onFinishButtonClick(View view){
+		Intent i = new Intent(this, VoiceActivity.class);
+		startActivity(i);
+	}
 }

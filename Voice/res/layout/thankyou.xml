@@ -29,5 +29,22 @@
         android:text="@string/thank_you_text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40pt" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="50pt"
+        android:layout_marginTop="50pt"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="100pt"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:onClick="onFinishButtonClick"
+            android:text="@string/button_finish" />
+
+    </LinearLayout>
 
 </LinearLayout>
