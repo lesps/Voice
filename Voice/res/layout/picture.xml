@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-     android:background="#ccccff"  >
+    android:orientation="vertical" >
 	
 	<LinearLayout
 	    android:id="@+id/linearLayoutText"
@@ -15,17 +14,16 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:textSize="48dp"
-		    android:text="@string/picture_question" 
-		    android:textColor="#000000" />/>
+		    android:text="@string/picture_question" />
 
 	</LinearLayout>
 	
 	<edu.upenn.cis350.voice.PictureQuestionView
 	    android:id="@+id/pictureQuestionView"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" >
-    	</edu.upenn.cis350.voice.PictureQuestionView>
-
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+    	android:background="#ccccff"  />
     
     <LinearLayout
         android:id="@+id/linearLayout1"

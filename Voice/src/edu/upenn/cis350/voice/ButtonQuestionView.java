@@ -52,25 +52,25 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		else
 			canvas.drawBitmap(_superHappy, 160, 160, null);
 		if (_selected == _happy)
-			canvas.drawBitmap(_pressedHappy, 160, 320, null);
+			canvas.drawBitmap(_pressedHappy, 320, 160, null);
 		else
-			canvas.drawBitmap(_happy, 160, 320, null);
+			canvas.drawBitmap(_happy, 320, 160, null);
 		if (_selected == _neutral)
-			canvas.drawBitmap(_pressedNeutral, 160, 480, null);
+			canvas.drawBitmap(_pressedNeutral, 480, 160, null);
 		else
-			canvas.drawBitmap(_neutral, 160, 480, null);
+			canvas.drawBitmap(_neutral, 480, 160, null);
 		if (_selected == _sad)
-			canvas.drawBitmap(_pressedSad, 320, 160, null);
+			canvas.drawBitmap(_pressedSad, 160, 320, null);
 		else
-			canvas.drawBitmap(_sad, 320, 160, null);
+			canvas.drawBitmap(_sad, 160, 320, null);
 		if (_selected == _crying)
 			canvas.drawBitmap(_pressedCrying, 320, 320, null);
 		else
 			canvas.drawBitmap(_crying, 320, 320, null);
 		if (_selected == _angry)
-			canvas.drawBitmap(_pressedAngry, 320, 480, null);
+			canvas.drawBitmap(_pressedAngry, 480, 320, null);
 		else
-			canvas.drawBitmap(_angry, 320, 480, null);
+			canvas.drawBitmap(_angry, 480, 320, null);
 	}
 	
 	@Override

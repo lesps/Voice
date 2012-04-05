@@ -14,7 +14,7 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:textSize="48dp"
-		    android:text="@string/drag_question" /> />
+		    android:text="@string/drag_question" />
 
 	</LinearLayout> 
 	
@@ -22,7 +22,8 @@
         android:id="@+id/dragQuestionView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+    	android:background="#ccccff"  />
 	
     <LinearLayout
         android:id="@+id/linearLayout1"
