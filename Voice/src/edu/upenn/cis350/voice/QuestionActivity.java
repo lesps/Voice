@@ -28,7 +28,8 @@ public class QuestionActivity extends Activity {
 		totalScore = 0; 
 		questionList = new ArrayList<Question>();
 		questionList.add(new Question("stuff", Type.DRAG));
-		questionList.add(new Question("tools", Type.BUTTON));
+		questionList.add(new Question("How was your day today?", Type.BUTTON));
+		questionList.add(new Question("", Type.SLIDER));
 		//Creates an instance of the Data Access Object
 		/**
 		try{

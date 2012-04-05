@@ -2,9 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="#ccffcc" >
-	>
+    android:orientation="vertical" >
 	
 	<LinearLayout
 	    android:id="@+id/linearLayoutText"
@@ -16,19 +14,27 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:textSize="48dp"
-		    android:text="@string/slider_question"
-		    android:textColor="#000000" /> />
+		    android:text="@string/slider_question" />
 
 	</LinearLayout>
 
-	<edu.upenn.cis350.voice.SliderQuestionView
-	    android:id="@+id/sliderQuestionView"
-	    android:layout_width="938dp"
-	    android:layout_height="20dp"
-	    android:paddingLeft="100dp"
-        android:progressDrawable="@drawable/scrollbar_progress"
-        android:indeterminateOnly="false" 
-/>
+	<LinearLayout
+	    android:id="@+id/linearLayoutView"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1" >
+
+		<edu.upenn.cis350.voice.SliderQuestionView
+		    android:id="@+id/sliderQuestionView"
+		    android:layout_width="900dp"
+		    android:layout_height="100dp"
+		    android:layout_gravity="center|center_horizontal|center_vertical"
+		    android:layout_marginLeft="190dp"
+		    android:background="#ccffcc"
+		    android:indeterminateOnly="false"
+		    android:progressDrawable="@drawable/scrollbar_progress" />
+	
+	</LinearLayout>
     
     <LinearLayout
         android:id="@+id/linearLayout1"
