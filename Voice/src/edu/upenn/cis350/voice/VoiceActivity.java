@@ -5,13 +5,17 @@ package edu.upenn.cis350.voice;
     import android.os.Bundle;
     import android.view.View;
     import android.content.Intent;
-
+    import com.parse.Parse;
+    import com.parse.ParseObject;
+    
     public class VoiceActivity extends Activity {
 
     	/** Called when the activity is first created. */
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            Parse.initialize(this, "pPpqQgvXPcLhyGUNTD7ktBhXEsMWVybkyq89kamw",
+            		"5GMEKejNwtcqJBSO6G4gcvjbD2mC6dgMi3XdgnQY");
             setContentView(R.layout.main);
             
         }
