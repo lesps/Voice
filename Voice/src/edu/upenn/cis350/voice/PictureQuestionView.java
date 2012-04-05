@@ -2,21 +2,46 @@ package edu.upenn.cis350.voice;
 
 import android.util.AttributeSet;
 
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.MotionEvent;
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
-public class PictureQuestionView extends ImageButton implements VoiceViewI{
+public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 	private int answerNum;
-	
+	private ImageButton button1, button2, button3, button4;
 	public PictureQuestionView(Context c) {
 		super(c);
+		button1 = new ImageButton(c);
+		button2 = new ImageButton(c);
+		button3 = new ImageButton(c);
+		button4 = new ImageButton(c);
+		addButtons();
 	}
 	
 	public PictureQuestionView(Context c, AttributeSet a) {
 		super(c, a);
+		button1 = new ImageButton(c, a);
+		button2 = new ImageButton(c, a);
+		button3 = new ImageButton(c, a);
+		button4 = new ImageButton(c, a);
+		addButtons();
+	}
+	
+	private void addButtons(){
+		this.addView(button1);
+		this.addView(button2);
+		this.addView(button3);
+		this.addView(button4);
+		
+		Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempimage);
+		
+		button1.setImageBitmap(pic);
+		button2.setImageBitmap(pic);
+		button3.setImageBitmap(pic);
+		button4.setImageBitmap(pic);
 	}
 	
 	
@@ -25,16 +50,17 @@ public class PictureQuestionView extends ImageButton implements VoiceViewI{
 		int eventAction = event.getAction();
 		
 		if( eventAction == MotionEvent.ACTION_DOWN){
-			if( this.getTag().equals("one")){
+
+			if( button1.isPressed()){
 				answerNum = 1;
 			}
-			else if( this.getTag().equals("two")){
+			else if( button2.isPressed()){
 				answerNum = 2;
 			}
-			else if( this.getTag().equals("three")){
+			else if(button3.isPressed()){
 				answerNum = 3;
 			}
-			else if( this.getTag().equals("four")){
+			else if(button4.isPressed()){
 				answerNum = 4;
 			}
 		}
