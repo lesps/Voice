@@ -8,7 +8,7 @@ package edu.upenn.cis350.voice;
     import com.parse.Parse;
     import com.parse.ParseObject;
     
-    public class VoiceActivity extends Activity {
+    public class WelcomeActivity extends Activity {
 
     	/** Called when the activity is first created. */
         @Override
@@ -21,7 +21,7 @@ package edu.upenn.cis350.voice;
         }
         public void onContinueClick(View view){
     	//Create and intent using the new activity and the class to be created (A quiz activity)
-    	Intent i = new Intent(VoiceActivity.this, QuestionActivity.class);
+    	Intent i = new Intent(WelcomeActivity.this, QuestionActivity.class);
     	
     	startActivity(i);
     

@@ -14,7 +14,7 @@ public class ThankYouActivity extends Activity {
 	}
 
 	public void onFinishButtonClick(View view){
-		Intent i = new Intent(this, VoiceActivity.class);
+		Intent i = new Intent(this, WelcomeActivity.class);
 		startActivity(i);
 	}
 }

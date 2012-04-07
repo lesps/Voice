@@ -70,7 +70,7 @@ public class QuestionActivity extends Activity {
 				numQuestion = 0;
 		}
 		currentQuestion = questionList.get(numQuestion);
-		Intent i = new Intent(this, NewQuestionActivity.class);
+		Intent i = new Intent(this, DisplayQuestion.class);
 		i.putExtra("Type", currentQuestion.getType());
 		i.putExtra("Text", currentQuestion.getText());
 		startActivityForResult(i, QuestionActivity.ACTIVITY_NewQuestion);

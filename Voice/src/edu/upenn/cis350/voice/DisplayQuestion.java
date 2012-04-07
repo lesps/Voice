@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class NewQuestionActivity extends Activity{
+public class DisplayQuestion extends Activity{
 	private VoiceViewI userView;
 	private TextView tview;
 	private String text;
