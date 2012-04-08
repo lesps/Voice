@@ -20,7 +20,8 @@ public class DBManager {
 	// Database fields
 	private SQLiteDatabase database;
 	private DBHelper dbHelper;
-	private String[] querycolumns= {"question", "type"};
+	private String[] querycolumns= {"number", "question", "type"};
+	private String[] queryColsAns = {"answer"};
 	
 	//Instantiates the dbHelper
 	public DBManager(Context context){
@@ -38,20 +39,31 @@ public class DBManager {
 	//Method to add questions. Returns -1 if not successful
 	public long insertQuestion(Question entry){
 		ContentValues values = new ContentValues();
-//		Log.i("debug message", "insert " + entry.getText()+ " into question");
+		values.put("number", entry.getNumber());
 		values.put("question", entry.getText());
 		values.put("type", entry.getType().name());
-//		Log.i("content values", values.toString());
 		return database.insert(DBHelper.QUS_TABLE, null, values);
+	}
+	
+	public long insertAnswer(String answer){
+		ContentValues values = new ContentValues();
+		values.put("answer", answer);
+		return database.insert(DBHelper.ANS_TABLE, null, values);
 	}
 	
 	//Method to delete entries
 	public void deleteQuestion(Question entry){
 		database.delete(DBHelper.QUS_TABLE, "question = " + entry.getText() , null);
 	}
+
 	//Method to delete all questions
-	public void deleteAll(){
+	public void deleteAllQuestions(){
 		database.delete(DBHelper.QUS_TABLE, null , null);
+	}
+	
+	//Method to delete all answers
+	public void deleteAllAnswers(){
+		database.delete(DBHelper.ANS_TABLE, null, null);
 	}
 	
 	//Method to get all questions of a certain type
@@ -84,13 +96,29 @@ public class DBManager {
 		return questions;
 	}
 	
+	//Method to get all answers
+	public ArrayList<String> getAllAnswers(){
+		ArrayList<String> answers = new ArrayList<String>();
+		Cursor cursor = database.query(DBHelper.ANS_TABLE, queryColsAns, null, null, null, null, null);
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()){
+			String s = cursor.getString(0);
+			answers.add(s);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return answers;
+	}
+	
 	//Converts values in our cursor to 
 	private Question cursorToQuestion(Cursor cursor){
+		//Retrieve number of question
+		Integer number = Integer.parseInt(cursor.getString(0));
 		//Retreive text of question
-		String text= cursor.getString(0);
+		String text= cursor.getString(1);
 		//Retreive type of question
-		Type type = Type.valueOf(cursor.getString(1));
-		Question q = new Question(text, type);
+		Type type = Type.valueOf(cursor.getString(2));
+		Question q = new Question(number, text, type);
 		return q;
 	}
 }

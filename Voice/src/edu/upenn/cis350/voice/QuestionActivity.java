@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 
 public class QuestionActivity extends Activity {
 
@@ -33,24 +34,16 @@ public class QuestionActivity extends Activity {
 				"5GMEKejNwtcqJBSO6G4gcvjbD2mC6dgMi3XdgnQY"); 
 		totalScore = 0; 
 		questionList = new ArrayList<Question>();
-		questionList.add(new Question("How do you feel right now?", Type.DRAG));
-		questionList.add(new Question("How was your day today?", Type.BUTTON));
-		questionList.add(new Question("How would you rate the quality of your care?", Type.SLIDER));
+		
+		Question one, two, three;
+		one = new Question(1, "How do you feel right now?", Type.DRAG);
+		questionList.add(one);
+		questionList.add(new Question(2, "How was your day today?", Type.BUTTON));
+		questionList.add(new Question(3, "How would you rate the quality of your care?", Type.SLIDER));
 		//Creates an instance of the Data Access Object
-		/**
-		try{
-			dataManager= new DBManager(this);
-			dataManager.open();
-			//IMPORTANT: The database stores all questions stored in all previous runs of the app
-			//Uncomment the delete line if you don't want the database to keep building up
-			dataManager.deleteAll(); //Clears the database
-			questionList = dataManager.getAllQuestions();
-		    dataManager.close();
-		}catch(SQLiteException e){
-			//Catching exception so the app doesn't crash and just goes to the thank you screen
-		}
-		**/
+		
 		numQuestion = -1;
+		
 		switchQuestion(true);
 	}	
 
@@ -98,9 +91,14 @@ public class QuestionActivity extends Activity {
 	 * Store information in the database and pass control to the thank you activity
 	 */
 	public void terminate(){
-		/**
-		 * Place code to synchronize with Parse here
-		 */
+		try{
+			dataManager= new DBManager(this);
+			dataManager.open();
+			dataManager.deleteAllQuestions(); //Clears the database
+		    dataManager.close();
+		}catch(SQLiteException e){
+			//Catching exception so the app doesn't crash and just goes to the thank you screen
+		}
 		Intent i = new Intent(this, ThankYouActivity.class);
 		startActivity(i);
 	}

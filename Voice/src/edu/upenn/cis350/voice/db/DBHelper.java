@@ -18,13 +18,19 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String DB_NAME = "voice";
 	//Names of tables
 	public static final String QUS_TABLE = "questions";
+	public static final String ANS_TABLE = "answers";
 
 	//Not sure what this value means, will look into it later
 	private static final int DATABASE_VERSION = 1;
 	// Database creation sql statement
 	private static final String DATABASE_CREATE = 
 			"create table " + QUS_TABLE +
-			"(question varchar, type varchar);";
+			"(number smallint, question varchar, type varchar);";
+	
+	
+	private static final String ANSWERS_DATABASE_CREATE = 
+			"create table " + ANS_TABLE +
+			"(answer varchar)";
 
 	//Context must be the activity that creates the database.
 	public DBHelper(Context context) {
@@ -36,6 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		//Executes query to create db
 		db.execSQL(DATABASE_CREATE);
+		db.execSQL(ANSWERS_DATABASE_CREATE);
 	}
 
 	@Override
