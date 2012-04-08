@@ -20,12 +20,12 @@ public class DragQuestionView extends View implements VoiceViewI {
 	private static int pic1topy=305;
 	private static int pic2topy=205;
 	private static int pic3topy=405;
-	private static int pic1bottomx=485;
-	private static int pic2bottomx=775;
-	private static int pic3bottomx=1065;
-	private static int pic1bottomy=385;
-	private static int pic2bottomy=285;
-	private static int pic3bottomy=485;
+	private static int pic1bottomx=505;
+	private static int pic2bottomx=795;
+	private static int pic3bottomx=1085;
+	private static int pic1bottomy=405;
+	private static int pic2bottomy=305;
+	private static int pic3bottomy=505;
 	private static RectF pic1 = new RectF(pic1topx, pic1topy, pic1bottomx, pic1bottomy);
 	private static RectF pic2 = new RectF(pic2topx, pic2topy, pic2bottomx, pic2bottomy);
 	private static RectF pic3 = new RectF(pic3topx, pic3topy, pic3bottomx, pic3bottomy);
@@ -45,8 +45,9 @@ public class DragQuestionView extends View implements VoiceViewI {
 	}
 	
 	protected void onDraw(Canvas canvas) {
+		canvas.drawRGB(153, 255, 255);
 		Color boxColor = new Color();
-		int colorInt = boxColor.rgb(271,196,222);
+		int colorInt = boxColor.rgb(51,204,204);
 		Paint paint = new Paint();
 		paint.setColor(colorInt);
 		if(square.intersect(pic1) ){
@@ -63,11 +64,11 @@ public class DragQuestionView extends View implements VoiceViewI {
 		pic2.set((float)pic2topx, (float)pic2topy, (float)pic2bottomx, (float)pic2bottomy);
 		pic3.set((float)pic3topx, (float)pic3topy, (float)pic3bottomx, (float)pic3bottomy);
 		canvas.drawRect(square, paint);
-		Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempimage);
+		Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.happypup);
 		canvas.drawBitmap(pic, null, pic1, paint);
-		pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempimage2);
+		pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.neutralpup);
 		canvas.drawBitmap(pic, null, pic2, paint);
-		pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempimage3);
+		pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.verysadpup);
 		canvas.drawBitmap(pic, null, pic3, paint);
 	}
 	

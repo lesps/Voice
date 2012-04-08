@@ -3,7 +3,7 @@
 
     <string name="hello">Hello World, VoiceActivity!</string>
     <string name="app_name">Voice</string>
-    <string name="welcome">Welcome to Consumer Voice!</string>
+    <string name="welcome">Welcome to Consumer VOICE!</string>
     <string name="cont">Continue</string>
     <string name="quicktreatmentq1">When you needed treatment fast, did you get help on the phone?</string>
     <string name="wheel_question">This would be a question with a wheel-type answer.</string>
