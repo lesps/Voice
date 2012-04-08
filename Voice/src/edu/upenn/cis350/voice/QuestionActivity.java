@@ -17,13 +17,13 @@ public class QuestionActivity extends Activity {
 	public static final int ACTIVITY_NewQuestion = 1;
 	public static final int ACTIVITY_Confirmation = 2;
 	public static final int ACTIVITY_End = 3;
-	private DBManager dataManager;
+	private DBManager _dataManager;
 
-	private int totalScore;
+	private int _totalScore;
 
-	private ArrayList<Question> questionList;
-	private Question currentQuestion;
-	private int numQuestion;
+	private ArrayList<Question> _questionList;
+	private Question _currentQuestion;
+	private int _numQuestion;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,40 +32,16 @@ public class QuestionActivity extends Activity {
 		//Initialize the PARSE object
 		Parse.initialize(this, "pPpqQgvXPcLhyGUNTD7ktBhXEsMWVybkyq89kamw", 
 				"5GMEKejNwtcqJBSO6G4gcvjbD2mC6dgMi3XdgnQY"); 
-		totalScore = 0; 
-		questionList = new ArrayList<Question>();
+		_totalScore = 0; 
+		_questionList = new ArrayList<Question>();
 		
 		Question one, two, three;
 		one = new Question(1, "How do you feel right now?", Type.DRAG);
 		two = new Question(2, "How is life?", Type.BUTTON);
-		questionList.add(one);
-		questionList.add(two);
-		questionList.add(new Question(3, "How would you rate the quality of your care?", Type.SLIDER));
-		//Creates an instance of the Data Access Object
-		try{
-			dataManager= new DBManager(this);
-			dataManager.open();
-			dataManager.insertQuestion(one);
-			dataManager.insertQuestion(two);
-			dataManager.insertAnswer(1, "5,10,5");
-			dataManager.insertAnswer(2, "1,2,3");
-			ArrayList<Question> test = dataManager.getAllQuestions();
-			Question q = test.get(0);  
-			ArrayList<String> ans  = dataManager.getAllAnswers();
-			String s  = ans.get(0);
-			Log.v("DEBUG", "Question q: " + q);
-			Log.v("DEBUG", "Text2: " + test.get(1).getText());
-			Log.v("DEBUG", "Number: " + q.getNumber());
-			Log.v("DEBUG", "Type: " + q.getType().name());
-			Log.v("DEBUG", "Text: " + q.getText());
-			Log.v("DEBUG", "Answer: " + s);
-			Log.v("Debug", "Answer 2: " + ans.get(1));
-			dataManager.deleteAllQuestions();
-		    dataManager.close();
-		}catch(SQLiteException e){
-			//Catching exception so the app doesn't crash and just goes to the thank you screen
-		}
-		numQuestion = -1;
+		_questionList.add(one);
+		_questionList.add(two);
+		_questionList.add(new Question(3, "How would you rate the quality of your care?", Type.SLIDER));
+		_numQuestion = -1;
 		
 		switchQuestion(true);
 	}	
@@ -73,22 +49,22 @@ public class QuestionActivity extends Activity {
 
 	public void switchQuestion(boolean next){
 		if(next){
-			++numQuestion;
-			if(numQuestion >= questionList.size()){
+			++_numQuestion;
+			if(_numQuestion >= _questionList.size()){
 				Intent i = new Intent(this, ConfirmationActivity.class);
 				startActivityForResult(i, QuestionActivity.ACTIVITY_Confirmation);
 				return;
 			}
 		}
 		else{
-			--numQuestion;
-			if(numQuestion < 0)
-				numQuestion = 0;
+			--_numQuestion;
+			if(_numQuestion < 0)
+				_numQuestion = 0;
 		}
-		currentQuestion = questionList.get(numQuestion);
+		_currentQuestion = _questionList.get(_numQuestion);
 		Intent i = new Intent(this, DisplayQuestion.class);
-		i.putExtra("Type", currentQuestion.getType());
-		i.putExtra("Text", currentQuestion.getText());
+		i.putExtra("Type", _currentQuestion.getType());
+		i.putExtra("Text", _currentQuestion.getText());
 		startActivityForResult(i, QuestionActivity.ACTIVITY_NewQuestion);
 	}
 
@@ -98,7 +74,7 @@ public class QuestionActivity extends Activity {
 		switch(requestCode){
 		case ACTIVITY_NewQuestion:
 			Integer answer = (Integer)intent.getExtras().get("Answer");
-			currentQuestion.setAnswer(answer);
+			_currentQuestion.setAnswer(answer);
 			switchQuestion(intent.getExtras().getBoolean("NextQuestion"));
 			break;
 		case ACTIVITY_Confirmation:
@@ -114,11 +90,21 @@ public class QuestionActivity extends Activity {
 	 * Store information in the database and pass control to the thank you activity
 	 */
 	public void terminate(){
+		StringBuffer ansbuff = new StringBuffer();
+		//Store answers to the questions as a string for caching
+		for(Question q : _questionList)
+			ansbuff.append(q.getAnswer() + ",");
+		//Eliminate the ending comma
+		ansbuff.substring(0, ansbuff.length()-1);
 		try{
-			dataManager= new DBManager(this);
-			dataManager.open();
-			dataManager.deleteAllQuestions(); //Clears the database
-		    dataManager.close();
+			_dataManager= new DBManager(this);
+			_dataManager.open();
+			
+			int cachesize = _dataManager.getAnswerCacheSize()+1;
+			_dataManager.insertAnswer(cachesize, ansbuff.toString());
+			
+			ArrayList<String> ans = _dataManager.getAllAnswers();
+		    _dataManager.close();
 		}catch(SQLiteException e){
 			//Catching exception so the app doesn't crash and just goes to the thank you screen
 		}

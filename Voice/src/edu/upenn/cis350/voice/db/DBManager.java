@@ -111,6 +111,19 @@ public class DBManager {
 		return answers;
 	}
 	
+	//Method to get current number of answers
+	public int getAnswerCacheSize(){
+		Cursor cursor = database.query(DBHelper.ANS_TABLE, queryColsAns, null, null, null, null, null);
+		int num = 0;
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()){
+			++num;
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return num;
+	}
+	
 	//Converts values in our cursor to 
 	private Question cursorToQuestion(Cursor cursor){
 		//Retrieve number of question
