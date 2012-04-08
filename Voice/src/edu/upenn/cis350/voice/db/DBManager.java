@@ -100,13 +100,17 @@ public class DBManager {
 	//Method to get all answers
 	public ArrayList<String> getAllAnswers(){
 		ArrayList<String> answers = new ArrayList<String>();
+		Log.v("DEBUG", "1");
 		Cursor cursor = database.query(DBHelper.ANS_TABLE, queryColsAns, null, null, null, null, null);
+		Log.v("DEBUG", "2");
 		cursor.moveToFirst();
+		Log.v("DEBUG", "3");
 		while(!cursor.isAfterLast()){
 			String s = cursor.getString(1);
 			answers.add(s);
 			cursor.moveToNext();
 		}
+		Log.v("DEBUG", "4");
 		cursor.close();
 		return answers;
 	}

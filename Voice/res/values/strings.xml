@@ -21,5 +21,6 @@
     <string name="submit">Submit</string>
     <string name="activity_confirmationactivity">Voice</string>
     <string name="button_finish">Finish</string>
+    <string name="button_sync">Sync</string>
 
 </resources>
