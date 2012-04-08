@@ -50,6 +50,7 @@ public class SliderQuestionView extends ProgressBar implements VoiceViewI {
 
 		return true;
 	}
+
 	
 	public int getAnswer(){
 		return this.getProgress();

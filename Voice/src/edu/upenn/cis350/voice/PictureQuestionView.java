@@ -36,7 +36,7 @@ public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 		this.addView(button3);
 		this.addView(button4);
 		
-		Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempimage);
+		Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.happypup);
 		
 		button1.setImageBitmap(pic);
 		button2.setImageBitmap(pic);
