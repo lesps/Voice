@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	private static final String ANSWERS_DATABASE_CREATE = 
 			"create table " + ANS_TABLE +
-			"(answer varchar)";
+			"(cachenum smallint, answer varchar)";
 
 	//Context must be the activity that creates the database.
 	public DBHelper(Context context) {

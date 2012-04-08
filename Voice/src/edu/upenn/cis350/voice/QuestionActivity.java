@@ -37,11 +37,34 @@ public class QuestionActivity extends Activity {
 		
 		Question one, two, three;
 		one = new Question(1, "How do you feel right now?", Type.DRAG);
+		two = new Question(2, "How is life?", Type.BUTTON);
 		questionList.add(one);
-		questionList.add(new Question(2, "How was your day today?", Type.BUTTON));
+		questionList.add(two);
 		questionList.add(new Question(3, "How would you rate the quality of your care?", Type.SLIDER));
 		//Creates an instance of the Data Access Object
-		
+		try{
+			dataManager= new DBManager(this);
+			dataManager.open();
+			dataManager.insertQuestion(one);
+			dataManager.insertQuestion(two);
+			dataManager.insertAnswer(1, "5,10,5");
+			dataManager.insertAnswer(2, "1,2,3");
+			ArrayList<Question> test = dataManager.getAllQuestions();
+			Question q = test.get(0);  
+			ArrayList<String> ans  = dataManager.getAllAnswers();
+			String s  = ans.get(0);
+			Log.v("DEBUG", "Question q: " + q);
+			Log.v("DEBUG", "Text2: " + test.get(1).getText());
+			Log.v("DEBUG", "Number: " + q.getNumber());
+			Log.v("DEBUG", "Type: " + q.getType().name());
+			Log.v("DEBUG", "Text: " + q.getText());
+			Log.v("DEBUG", "Answer: " + s);
+			Log.v("Debug", "Answer 2: " + ans.get(1));
+			dataManager.deleteAllQuestions();
+		    dataManager.close();
+		}catch(SQLiteException e){
+			//Catching exception so the app doesn't crash and just goes to the thank you screen
+		}
 		numQuestion = -1;
 		
 		switchQuestion(true);

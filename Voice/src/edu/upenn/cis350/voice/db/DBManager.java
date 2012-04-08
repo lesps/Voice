@@ -21,7 +21,7 @@ public class DBManager {
 	private SQLiteDatabase database;
 	private DBHelper dbHelper;
 	private String[] querycolumns= {"number", "question", "type"};
-	private String[] queryColsAns = {"answer"};
+	private String[] queryColsAns = {"cachenum", "answer"};
 	
 	//Instantiates the dbHelper
 	public DBManager(Context context){
@@ -45,8 +45,9 @@ public class DBManager {
 		return database.insert(DBHelper.QUS_TABLE, null, values);
 	}
 	
-	public long insertAnswer(String answer){
+	public long insertAnswer(int cachenum, String answer){
 		ContentValues values = new ContentValues();
+		values.put("cachenum", cachenum);
 		values.put("answer", answer);
 		return database.insert(DBHelper.ANS_TABLE, null, values);
 	}
@@ -102,7 +103,7 @@ public class DBManager {
 		Cursor cursor = database.query(DBHelper.ANS_TABLE, queryColsAns, null, null, null, null, null);
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
-			String s = cursor.getString(0);
+			String s = cursor.getString(1);
 			answers.add(s);
 			cursor.moveToNext();
 		}
