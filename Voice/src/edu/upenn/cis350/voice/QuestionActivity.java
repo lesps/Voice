@@ -38,16 +38,6 @@ public class QuestionActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-		/**
-		Question one, two, three;
-		one = new Question(1, "How do you feel right now?", Type.DRAG);
-		two = new Question(2, "How is life?", Type.BUTTON);
-		_questionList = new ArrayList<Question>();
-		_questionList.add(one);
-		_questionList.add(two);
-		_questionList.add(new Question(3, "How would you rate the quality of your care?", Type.SLIDER));
-		**/
-		
 		_numQuestion = -1;
 		switchQuestion(true);
 	}	
@@ -93,7 +83,8 @@ public class QuestionActivity extends Activity {
 	}
 	
 	/**
-	 * Store information in the database and pass control to the thank you activity
+	 * Store answer information in the database and pass control to
+	 * the thank you activity
 	 */
 	public void terminate(){
 		StringBuffer ansbuff = new StringBuffer();
