@@ -82,7 +82,12 @@ public class DBManager {
 		return questions;
 	}
 	
-	//Method to get all questions
+	/**
+	 * This method retrieves all the questions stored in the SQLite Database
+	 * 
+	 * @param none
+	 * @return - Returns an ArrayList of Questions. 
+	 */	
 	public ArrayList<Question> getAllQuestions(){
 		ArrayList<Question> questions= new ArrayList<Question>();
 		Cursor cursor = database.query(DBHelper.QUS_TABLE, querycolumns, null, null, null, null, null);
@@ -128,13 +133,19 @@ public class DBManager {
 		return num;
 	}
 	
-	//Converts values in our cursor to 
+	/**
+	 * This method is a helper method that converts the values of a standard SQL cursor into our
+	 * Question Object. Our Question object has 3 fields (number, text, and type)
+	 * 
+	 * @param cursor- The cursor that represents the values in a row of our SQL table
+	 * @return - Returns a question created from the values 
+	 */	
 	private Question cursorToQuestion(Cursor cursor){
 		//Retrieve number of question
 		Integer number = Integer.parseInt(cursor.getString(0));
-		//Retreive text of question
+		//Retrieve text of question
 		String text= cursor.getString(1);
-		//Retreive type of question
+		//Retrieve type of question
 		Type type = Type.valueOf(cursor.getString(2));
 		Question q = new Question(number, text, type);
 		return q;
