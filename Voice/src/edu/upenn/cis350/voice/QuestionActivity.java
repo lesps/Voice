@@ -2,8 +2,6 @@ package edu.upenn.cis350.voice;
 
 import java.util.ArrayList;
 
-import com.parse.Parse;
-
 import edu.upenn.cis350.voice.db.DBManager;
 
 import android.app.Activity;
@@ -29,20 +27,28 @@ public class QuestionActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//Initialize the PARSE object
-		Parse.initialize(this, "pPpqQgvXPcLhyGUNTD7ktBhXEsMWVybkyq89kamw", 
-				"5GMEKejNwtcqJBSO6G4gcvjbD2mC6dgMi3XdgnQY"); 
 		_totalScore = 0; 
-		_questionList = new ArrayList<Question>();
+		_dataManager = new DBManager(this);
+		
+		/**
+		try{
+			_dataManager.open();
+			_questionList = _dataManager.getAllQuestions();
+			_dataManager.close();
+		} catch(SQLiteException e){
+			e.printStackTrace();
+		}
+		**/
 		
 		Question one, two, three;
 		one = new Question(1, "How do you feel right now?", Type.DRAG);
 		two = new Question(2, "How is life?", Type.BUTTON);
+		_questionList = new ArrayList<Question>();
 		_questionList.add(one);
 		_questionList.add(two);
 		_questionList.add(new Question(3, "How would you rate the quality of your care?", Type.SLIDER));
-		_numQuestion = -1;
 		
+		_numQuestion = -1;
 		switchQuestion(true);
 	}	
 
@@ -97,7 +103,6 @@ public class QuestionActivity extends Activity {
 		//Eliminate the ending comma
 		ansbuff.substring(0, ansbuff.length()-1);
 		try{
-			_dataManager= new DBManager(this);
 			_dataManager.open();
 			
 			int cachesize = _dataManager.getAnswerCacheSize()+1;
