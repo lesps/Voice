@@ -55,5 +55,10 @@ public class SliderQuestionView extends ProgressBar implements VoiceViewI {
 	public int getAnswer(){
 		return this.getProgress();
 	}
+	
+	public void setAnswer(int prevAnswer){
+		//TODO: Implement this please! This should make allow the user to return to this question,
+		//and have the answer they gave still be selected
+	}
 
 }

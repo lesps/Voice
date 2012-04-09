@@ -73,6 +73,12 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 			canvas.drawBitmap(_angry, 720, 320, null);
 	}
 	
+	/**
+	 * This method allows the user to press a button by touching it on the screen.
+	 * 
+	 * @param event - The corresponding MotionEvent object
+	 * @return - Returns the boolean true if a button was pressed; false otherwise.
+	 */
 	@Override
 	public boolean onTouchEvent (MotionEvent event) {
 		int eventAction = event.getAction();
@@ -108,7 +114,7 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		}
 		
 		invalidate();
-		return true;
+		return false;
 	}
 
 	public int getAnswer(){
@@ -126,5 +132,10 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 			return 0;
 		else return -1;
 		
+	}
+	
+	public void setAnswer(int prevAnswer){
+		//TODO: Implement this please! This should make allow the user to return to this question,
+		//and have the answer they gave still be selected
 	}
 }
