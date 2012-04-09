@@ -44,12 +44,21 @@ public class DragQuestionView extends View implements VoiceViewI {
 		super(c, a);
 	}
 	
+	/**
+	 * Draw the canvas as a soft teal. Check if any of the images are intersecting the answer box.
+	 * If they are, change the stored answer to the assigned int value of the image.
+	 * Redraw the pictures.
+	 * 
+	 *  @param- The canvas to draw
+	 */
+	
 	protected void onDraw(Canvas canvas) {
 		canvas.drawRGB(153, 255, 255);
 		Color boxColor = new Color();
 		int colorInt = boxColor.rgb(51,204,204);
 		Paint paint = new Paint();
 		paint.setColor(colorInt);
+		
 		if(square.intersect(pic1) ){
 			answerInt = 1;
 		}
@@ -59,11 +68,13 @@ public class DragQuestionView extends View implements VoiceViewI {
 		else if(square.intersect(pic3) ){
 			answerInt = 3;
 		}
+		//Update the x and y coordinates of each image
 		square.set(590,400,690,500);
 		pic1.set((float)pic1topx, (float)pic1topy, (float)pic1bottomx, (float)pic1bottomy);
 		pic2.set((float)pic2topx, (float)pic2topy, (float)pic2bottomx, (float)pic2bottomy);
 		pic3.set((float)pic3topx, (float)pic3topy, (float)pic3bottomx, (float)pic3bottomy);
 		canvas.drawRect(square, paint);
+		
 		Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.happypup);
 		canvas.drawBitmap(pic, null, pic1, paint);
 		pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.neutralpup);
@@ -72,12 +83,19 @@ public class DragQuestionView extends View implements VoiceViewI {
 		canvas.drawBitmap(pic, null, pic3, paint);
 	}
 	
+	/**
+	 * This method makes it so the user can drag each image if its being touched.
+	 * 
+	 * @param- The motion event being queried
+	 * @return- always true
+	 */
+	
 	@Override
 	public boolean onTouchEvent (MotionEvent event) {
 		int eventAction = event.getAction();
 		int actionX = (int)event.getX(event.findPointerIndex(event.getActionIndex()));
 		int actionY = (int)event.getY(event.findPointerIndex(event.getActionIndex()));
-		
+		//Find the offset between the edges and the spot its touched, so that each image is consistently dragged from the spot it was touched.
 		if(eventAction ==0 ){
 			if(actionX < pic1bottomx && actionY < pic1bottomy && actionX > pic1topx && actionY > pic1topy){
 				xtoffset = pic1topx -actionX;
@@ -102,6 +120,7 @@ public class DragQuestionView extends View implements VoiceViewI {
 				invalidate();}
 			isPressed = true;
 		}
+		//Apply the offset to the x and y values of the point of contact, and change the x and y coordinates of the touched image
 		if(event.getPressure()!=0 && isPressed){
 			if(is1){
 				pic1topx = actionX+ xtoffset;
@@ -122,7 +141,6 @@ public class DragQuestionView extends View implements VoiceViewI {
 				pic3bottomy = actionY+ yboffset;
 				invalidate();}	
 		}
-		
 		if(isPressed == true && eventAction ==1){
 			is1= is2 = is3 = isPressed = false;
 			invalidate();
