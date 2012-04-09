@@ -18,11 +18,29 @@
 		    android:text="@string/wheel_question" />
 	</LinearLayout>
 	
-    <edu.upenn.cis350.voice.WheelQuestionView
-        android:id="@+id/wheelQuestionView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" />
+	<AbsoluteLayout 
+	    android:id="@+id/contentLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1"
+	    android:background="#6699ff" >
+
+		<edu.upenn.cis350.voice.WheelQuestionView
+		    android:id="@+id/wheelQuestionView"
+		    android:layout_width="500dp"
+		    android:layout_height="500dp" 
+		    android:layout_x="390dp" 
+		    android:layout_y="70dp" />
+
+		<ImageView
+		    android:id="@+id/imageView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/selector"
+		    android:layout_x="590dp"
+		    android:layout_y="0dp" />
+	    
+	</AbsoluteLayout>
     
     <LinearLayout
         android:id="@+id/linearLayout1"

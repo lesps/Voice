@@ -10,9 +10,9 @@ import android.content.Context;
 
 public class ButtonQuestionView extends View implements VoiceViewI {
 	
-	Bitmap _superHappy, _happy, _neutral, _sad, _crying, _angry;
-	Bitmap _pressedSuperHappy, _pressedHappy, _pressedNeutral, _pressedSad, _pressedCrying, _pressedAngry;
-	Bitmap _selected;
+	private Bitmap _superHappy, _happy, _neutral, _sad, _crying, _angry;
+	private Bitmap _pressedSuperHappy, _pressedHappy, _pressedNeutral, _pressedSad, _pressedCrying, _pressedAngry;
+	private Bitmap _selected;
 	
 	public ButtonQuestionView(Context c) {
 		super(c);
@@ -135,8 +135,28 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 	}
 	
 	public void setAnswer(int prevAnswer){
-		//TODO: Implement this please! This should make allow the user to return to this question,
-		//and have the answer they gave still be selected
+		switch (prevAnswer) {
+			case 10:
+				_selected = _superHappy;
+				return;
+			case 8:
+				_selected = _happy;
+				return;
+			case 6:
+				_selected = _neutral;
+				return;
+			case 4:
+				_selected = _sad;
+				return;
+			case 2:
+				_selected = _crying;
+				return;
+			case 0:
+				_selected = _angry;
+				return;
+			default:
+				return;
+		}
 	}
 	
 	public void animate(){

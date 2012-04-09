@@ -30,28 +30,40 @@ public class SliderQuestionView extends ProgressBar implements VoiceViewI {
         listener = l;
         }
 	
+	/**
+	 * Update the slider bar as the user touches it and drags.
+	 * 
+	 * @param- the motion event from the user
+	 * @return- always return true
+	 */
 	@Override
 	public boolean onTouchEvent (MotionEvent event) {
 		int eventAction = event.getAction();
-		
-		if (eventAction == MotionEvent.ACTION_DOWN
-                || eventAction == MotionEvent.ACTION_MOVE) {
-        float x_mouse = event.getX() - padding;
-        float width = getWidth() - 2*padding;
-        int progress = Math.round((float) getMax() * (x_mouse / width));
+		//While the user is pushing down and/or moving their finger over the slider, and if the touch event is within the padding region
+		if (eventAction == MotionEvent.ACTION_DOWN || eventAction == MotionEvent.ACTION_MOVE) {
+			float x_mouse = event.getX() - padding;
+			float width = getWidth() - 2*padding;
+			int progress = Math.round((float) getMax() * (x_mouse / width));
 
-        if (progress < 0)
-                progress = 0;
+			if (progress < 0){
+				progress = 0;
+			}
 
-        this.setProgress(progress);
+			this.setProgress(progress);
         
-        if (listener != null)
-                listener.onProgressChanged(this, progress);}
+			if (listener != null){
+				listener.onProgressChanged(this, progress);
+				}
+			}
 
 		return true;
 	}
 
-	
+	/**
+	 * Progress max is 10, so a value between 1 and 10 is returned
+	 * 
+	 * @return- returns the current progress value.
+	 */
 	public int getAnswer(){
 		return this.getProgress();
 	}

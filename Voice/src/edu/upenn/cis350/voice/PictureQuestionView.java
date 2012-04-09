@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 	private int answerNum;
 	private ImageButton button1, button2, button3, button4;
+	
 	public PictureQuestionView(Context c) {
 		super(c);
 		button1 = new ImageButton(c);
@@ -30,6 +31,9 @@ public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 		addButtons();
 	}
 	
+	/**
+	 * Add each button to this view.
+	 */
 	private void addButtons(){
 		this.addView(button1);
 		this.addView(button2);
@@ -44,6 +48,9 @@ public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 		button4.setImageBitmap(pic);
 	}
 	
+	/**
+	 * Find which button has been pressed, and return an assigned integer value based upon the chosen button.
+	 */
 	
 	@Override
 	public boolean onTouchEvent (MotionEvent event) {
