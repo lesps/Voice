@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import edu.upenn.cis350.voice.db.DBManager;
+import edu.upenn.cis350.voice.db.VoiceCallback;
+
 import android.app.Activity;
 import com.parse.ParseException;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 
+import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -33,12 +36,6 @@ public class WelcomeActivity extends Activity {
 		setContentView(R.layout.welcome);
 
 	}
-
-	public void synchronize(){
-		synchronizeAnswers();
-		//synchronizeQuestions();
-	}
-
 
 	public ArrayList<Integer> parseAnswer(String ans){
 		Scanner scan = new Scanner(ans);
@@ -84,34 +81,40 @@ public class WelcomeActivity extends Activity {
 			t = Type.SLIDER;
 		else if(type.equalsIgnoreCase("picture"))
 			t = Type.PICTURE;
+		else
+			return null;
 		return new Question(num, text, t);
 	}
-	
+
 	public void synchronizeQuestions(){
-		try{
-			ParseQuery qus = new ParseQuery("Question");
-			List<ParseObject> serv = qus.find();
-			Iterator<ParseObject> iter = serv.iterator();
-			ArrayList<Question> list = new ArrayList<Question>();
-			while(iter.hasNext()){
-				Question q = constructQuestion(iter.next());
-				list.add(q);
-			}
-			
-			_db.open();
-			_db.deleteAllQuestions();
-			for(Question q : list)
-				_db.insertQuestion(q);
-			_db.close();
-		} catch(ParseException e){
-			e.printStackTrace();
-		} catch(SQLiteException e){
-			e.printStackTrace();
-		}
+		ParseQuery query = new ParseQuery("Question");
+		VoiceCallback callback = new VoiceCallback(this);
+		query.findInBackground(callback);
+		
 	}
 
 	public void onSynchronizeClick(View view){
-		synchronize();
+		synchronizeQuestions();
+		synchronizeAnswers();
+	}
+	
+	public void updateQuestions(List<ParseObject> list){
+		ArrayList<Question> qlist = new ArrayList<Question>();
+		Iterator<ParseObject> iter = list.iterator();
+		while(iter.hasNext()){
+			Question q = constructQuestion(iter.next());
+			if(q!=null)
+				qlist.add(q);
+		}
+		try{	
+			_db.open();
+			_db.deleteAllQuestions();
+			for(Question q : qlist)
+				_db.insertQuestion(q);
+			_db.close();
+		}catch(SQLiteException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void onContinueClick(View view){

@@ -30,7 +30,6 @@ public class QuestionActivity extends Activity {
 		_totalScore = 0; 
 		_dataManager = new DBManager(this);
 		
-		/**
 		try{
 			_dataManager.open();
 			_questionList = _dataManager.getAllQuestions();
@@ -38,8 +37,8 @@ public class QuestionActivity extends Activity {
 		} catch(SQLiteException e){
 			e.printStackTrace();
 		}
-		**/
 		
+		/**
 		Question one, two, three;
 		one = new Question(1, "How do you feel right now?", Type.DRAG);
 		two = new Question(2, "How is life?", Type.BUTTON);
@@ -47,6 +46,7 @@ public class QuestionActivity extends Activity {
 		_questionList.add(one);
 		_questionList.add(two);
 		_questionList.add(new Question(3, "How would you rate the quality of your care?", Type.SLIDER));
+		**/
 		
 		_numQuestion = -1;
 		switchQuestion(true);
