@@ -133,4 +133,9 @@ public class DragQuestionView extends View implements VoiceViewI {
 	public int getAnswer(){
 		return answerInt;
 	}
+	
+	public void setAnswer(int prevAnswer){
+		//TODO: Implement this please! This should make allow the user to return to this question,
+		//and have the answer they gave still be selected
+	}
 }

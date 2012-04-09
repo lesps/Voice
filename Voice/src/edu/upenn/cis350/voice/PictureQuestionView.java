@@ -52,16 +52,16 @@ public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 		if( eventAction == MotionEvent.ACTION_DOWN){
 
 			if( button1.isPressed()){
-				answerNum = 1;
+				answerNum = 0;
 			}
 			else if( button2.isPressed()){
-				answerNum = 2;
+				answerNum = 4;
 			}
 			else if(button3.isPressed()){
-				answerNum = 3;
+				answerNum = 6;
 			}
 			else if(button4.isPressed()){
-				answerNum = 4;
+				answerNum = 10;
 			}
 		}
 		return true;
@@ -72,4 +72,8 @@ public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 		return answerNum;
 	}
 
+	public void setAnswer(int prevAnswer){
+		//TODO: Implement this please! This should make allow the user to return to this question,
+		//and have the answer they gave still be selected
+	}
 }
