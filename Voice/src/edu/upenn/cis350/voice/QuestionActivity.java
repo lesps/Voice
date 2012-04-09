@@ -61,6 +61,7 @@ public class QuestionActivity extends Activity {
 		Intent i = new Intent(this, DisplayQuestion.class);
 		i.putExtra("Type", _currentQuestion.getType());
 		i.putExtra("Text", _currentQuestion.getText());
+		i.putExtra("Answer", new Integer(_currentQuestion.getAnswer()));
 		startActivityForResult(i, QuestionActivity.ACTIVITY_NewQuestion);
 	}
 

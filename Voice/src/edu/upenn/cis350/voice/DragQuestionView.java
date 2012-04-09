@@ -138,4 +138,8 @@ public class DragQuestionView extends View implements VoiceViewI {
 		//TODO: Implement this please! This should make allow the user to return to this question,
 		//and have the answer they gave still be selected
 	}
+	
+	public void animate(){
+		
+	}
 }

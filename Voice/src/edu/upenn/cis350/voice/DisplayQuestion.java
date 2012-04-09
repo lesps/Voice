@@ -11,6 +11,7 @@ public class DisplayQuestion extends Activity{
 	private TextView tview;
 	private String text;
 	private Type type;
+	private Integer answer;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -27,6 +28,7 @@ public class DisplayQuestion extends Activity{
 
 		type = (Type)b.get("Type");
 		text = (String)b.get("Text");
+		answer = (Integer)b.get("Answer");
 
 		switch(type){
 			case SLIDER:
@@ -57,6 +59,8 @@ public class DisplayQuestion extends Activity{
 		}
 		
 		tview.setText(text);
+		
+		userView.setAnswer(answer);
 	}
 
 	public void onBackButtonClick(View view) {
@@ -71,6 +75,9 @@ public class DisplayQuestion extends Activity{
 		Intent i = new Intent();
 		i.putExtra("Answer", userView.getAnswer());
 		i.putExtra("NextQuestion", true); //Put false if moving backward
+		
+		userView.animate();
+		
 		setResult(RESULT_OK, i);
 		finish();
 	}
