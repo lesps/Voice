@@ -37,12 +37,19 @@ public class QuestionActivity extends Activity {
 		} catch(SQLiteException e){
 			e.printStackTrace();
 		}
-		
+		if(_questionList==null)
+			loadDefaultQuestions();
 		_numQuestion = -1;
 		switchQuestion(true);
 	}	
-
-
+	
+	public void loadDefaultQuestions(){
+		_questionList = new ArrayList<Question>();
+		_questionList.add(new Question(1, "How are you today?", Type.BUTTON));
+		_questionList.add(new Question(2, "How was your session?", Type.SLIDER));
+		_questionList.add(new Question(3, "How satisfied are you with life?", 
+																	Type.DRAG));
+	}
 	public void switchQuestion(boolean next){
 		if(next){
 			++_numQuestion;
