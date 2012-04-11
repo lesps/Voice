@@ -13,35 +13,42 @@ import android.content.Context;
 import android.view.View;
 
 public class DragQuestionView extends View implements VoiceViewI {
-	private static RectF square =new RectF(100,200,200,300);
-	private static int pic1topx=405;
-	private static int pic2topx=695;
-	private static int pic3topx=985;
-	private static int pic1topy=305;
-	private static int pic2topy=205;
-	private static int pic3topy=405;
-	private static int pic1bottomx=505;
-	private static int pic2bottomx=795;
-	private static int pic3bottomx=1085;
-	private static int pic1bottomy=405;
-	private static int pic2bottomy=305;
-	private static int pic3bottomy=505;
-	private static RectF pic1 = new RectF(pic1topx, pic1topy, pic1bottomx, pic1bottomy);
-	private static RectF pic2 = new RectF(pic2topx, pic2topy, pic2bottomx, pic2bottomy);
-	private static RectF pic3 = new RectF(pic3topx, pic3topy, pic3bottomx, pic3bottomy);
+	private RectF square =new RectF(100,200,200,300);
+	private int pic1topx=405;
+	private int pic2topx=695;
+	private int pic3topx=985;
+	private int pic1topy=305;
+	private int pic2topy=205;
+	private int pic3topy=405;
+	private int pic1bottomx=505;
+	private int pic2bottomx=795;
+	private int pic3bottomx=1085;
+	private int pic1bottomy=405;
+	private int pic2bottomy=305;
+	private int pic3bottomy=505;
+	private RectF pic1 = new RectF(pic1topx, pic1topy, pic1bottomx, pic1bottomy);
+	private RectF pic2 = new RectF(pic2topx, pic2topy, pic2bottomx, pic2bottomy);
+	private RectF pic3 = new RectF(pic3topx, pic3topy, pic3bottomx, pic3bottomy);
 	private int answerInt=0;
-	private static int xtoffset=0;
-	private static int ytoffset=0;
-	private static int xboffset=0;
-	private static int yboffset=0;
-	private static boolean is1, is2, is3, isPressed = false;
+	private int xtoffset=0;
+	private int ytoffset=0;
+	private int xboffset=0;
+	private int yboffset=0;
+	private boolean is1, is2, is3, isPressed = false;
+	private Bitmap bit1, bit2, bit3;
 	
 	public DragQuestionView(Context c) {
 		super(c);
+		bit1 = BitmapFactory.decodeResource(this.getResources(), R.drawable.happypup);
+		bit2 = BitmapFactory.decodeResource(this.getResources(), R.drawable.neutralpup);
+		bit3 = BitmapFactory.decodeResource(this.getResources(), R.drawable.verysadpup);
 	}
 	
 	public DragQuestionView(Context c, AttributeSet a) {
 		super(c, a);
+		bit1 = BitmapFactory.decodeResource(this.getResources(), R.drawable.happypup);
+		bit2 = BitmapFactory.decodeResource(this.getResources(), R.drawable.neutralpup);
+		bit3 = BitmapFactory.decodeResource(this.getResources(), R.drawable.verysadpup);
 	}
 	
 	/**
@@ -54,19 +61,18 @@ public class DragQuestionView extends View implements VoiceViewI {
 	
 	protected void onDraw(Canvas canvas) {
 		canvas.drawRGB(153, 255, 255);
-		Color boxColor = new Color();
-		int colorInt = boxColor.rgb(51,204,204);
+		int colorInt = Color.rgb(51,204,204);
 		Paint paint = new Paint();
 		paint.setColor(colorInt);
 		
 		if(square.intersect(pic1) ){
-			answerInt = 1;
+			answerInt = 10;
 		}
 		else if(square.intersect(pic2) ){
-			answerInt = 2;
+			answerInt = 6;
 		}
 		else if(square.intersect(pic3) ){
-			answerInt = 3;
+			answerInt = 2;
 		}
 		//Update the x and y coordinates of each image
 		square.set(590,400,690,500);
@@ -75,12 +81,10 @@ public class DragQuestionView extends View implements VoiceViewI {
 		pic3.set((float)pic3topx, (float)pic3topy, (float)pic3bottomx, (float)pic3bottomy);
 		canvas.drawRect(square, paint);
 		
-		Bitmap pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.happypup);
-		canvas.drawBitmap(pic, null, pic1, paint);
-		pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.neutralpup);
-		canvas.drawBitmap(pic, null, pic2, paint);
-		pic = BitmapFactory.decodeResource(this.getResources(), R.drawable.verysadpup);
-		canvas.drawBitmap(pic, null, pic3, paint);
+
+		canvas.drawBitmap(bit1, null, pic1, paint);
+		canvas.drawBitmap(bit2, null, pic2, paint);
+		canvas.drawBitmap(bit3, null, pic3, paint);
 	}
 	
 	/**
