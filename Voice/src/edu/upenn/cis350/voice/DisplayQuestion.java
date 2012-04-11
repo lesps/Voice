@@ -13,6 +13,9 @@ public class DisplayQuestion extends Activity{
 	private Type type;
 	private Integer answer;
 
+	/**
+	 * Initialize the question to be displayed
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -63,6 +66,10 @@ public class DisplayQuestion extends Activity{
 		userView.setAnswer(answer);
 	}
 
+	/**
+	 * Handle the back button press
+	 * @param view
+	 */
 	public void onBackButtonClick(View view) {
 		Intent i = new Intent();
 		i.putExtra("Answer", userView.getAnswer());
@@ -71,6 +78,10 @@ public class DisplayQuestion extends Activity{
 		finish();
 	}
 
+	/**
+	 * Handle the next button press
+	 * @param view
+	 */
 	public void onNextButtonClick(View view) {
 		Intent i = new Intent();
 		i.putExtra("Answer", userView.getAnswer());
