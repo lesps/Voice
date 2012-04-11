@@ -136,6 +136,8 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 	
 	public void setAnswer(int prevAnswer){
 		switch (prevAnswer) {
+			case -1:
+				return;
 			case 10:
 				_selected = _superHappy;
 				return;

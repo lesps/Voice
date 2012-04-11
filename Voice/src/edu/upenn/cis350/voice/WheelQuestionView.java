@@ -14,7 +14,7 @@ public class WheelQuestionView extends View implements VoiceViewI {
 	private Bitmap _spinner;
 	private float _degrees = 0;	
 	private Matrix _spinMatrix = new Matrix();
-	private float initx, inity = 0.0f;
+	private float _initx, _inity = 0.0f;
 	
 	public WheelQuestionView(Context c) {
 		super(c);
@@ -36,17 +36,23 @@ public class WheelQuestionView extends View implements VoiceViewI {
 		float y = event.getY();
 		
 		if (eventAction == MotionEvent.ACTION_DOWN) {
-			initx = x;
-			inity = y;
+			_initx = x;
+			_inity = y;
 		}
 		else if (eventAction == MotionEvent.ACTION_MOVE) {
-			_degrees = calculateDegrees(x, y, initx, inity);
-			_spinMatrix.setRotate(_degrees, _spinner.getWidth()/2, _spinner.getHeight()/2);
+			float degrees = calculateDegrees(x, y, _initx, _inity);
+			_degrees += degrees;
+			_degrees %= 360;
+			_spinMatrix.postRotate(degrees, _spinner.getWidth()/2, _spinner.getHeight()/2);
+			x = event.getX();
+			y = event.getY();
+			_initx = x;
+			_inity = y;
 		}
 		else if (eventAction == MotionEvent.ACTION_UP) {
-			
+			System.out.println(_degrees);
 		}
-		
+
 		invalidate();
 		return true;
 	}
@@ -60,26 +66,62 @@ public class WheelQuestionView extends View implements VoiceViewI {
 		double xb = x2 - offsetX;
 		double yb = offsetY - y2;
 		
-		double magA = Math.sqrt(Math.pow(xa, 2.0) + Math.pow(ya, 2.0));
-		double magB = Math.sqrt(Math.pow(xb, 2.0) + Math.pow(yb, 2.0));
+		double angleRads = Math.atan2(yb, xb) - Math.atan2(ya, xa);
 		
-		double unitAX = xa/magA;
-		double unitAY = ya/magA;
-		double unitBX = xb/magB;
-		double unitBY = yb/magB;
-		
-		double dotProduct = (unitAX*unitBX + unitAY*unitBY);
-		
-		return (float) Math.acos(dotProduct);
+		return (float) ((float) angleRads*(180/Math.PI));		
 	}
 	
 	public int getAnswer(){
-		return 0;
+		if (_degrees < 0)
+			_degrees += 360;
+		
+		if (_degrees >= 0 && _degrees < 60)
+			return 10;
+		else if (_degrees >= 60 && _degrees < 120)
+			return 6;
+		else if (_degrees >= 120 && _degrees < 180)
+			return 2;
+		else if (_degrees >= 180 && _degrees < 240)
+			return 4;
+		else if (_degrees >= 240 && _degrees < 300)
+			return 0;
+		else if (_degrees >= 300 && _degrees < 360)
+			return 8;
+		else
+			return -1;
 	}
 	
 	public void setAnswer(int prevAnswer){
-		//TODO: Implement this please! This should make allow the user to return to this question,
-		//and have the answer they gave still be selected
+		switch (prevAnswer) {
+			case -1:
+				return;
+			case 10:
+				_degrees = 30;
+				_spinMatrix.setRotate(_degrees, _spinner.getWidth()/2, _spinner.getWidth()/2);
+				return;
+			case 8:
+				_degrees = 330;
+				_spinMatrix.setRotate(_degrees, _spinner.getWidth()/2, _spinner.getWidth()/2);
+				return;
+			case 6:
+				_degrees = 90;
+				_spinMatrix.setRotate(_degrees, _spinner.getWidth()/2, _spinner.getWidth()/2);
+				return;
+			case 4:
+				_degrees = 210;
+				_spinMatrix.setRotate(_degrees, _spinner.getWidth()/2, _spinner.getWidth()/2);
+				return;
+			case 2:
+				_degrees = 150;
+				_spinMatrix.setRotate(_degrees, _spinner.getWidth()/2, _spinner.getWidth()/2);
+				return;
+			case 0:
+				_degrees = 270;
+				_spinMatrix.setRotate(_degrees, _spinner.getWidth()/2, _spinner.getWidth()/2);
+				return;
+			default:
+				return;
+		}
 	}
 	
 	public void animate(){
