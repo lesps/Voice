@@ -43,6 +43,9 @@ public class QuestionActivity extends Activity {
 		switchQuestion(true);
 	}	
 	
+	/**
+	 * Load a default set of questions if the question list is empty 
+	 */
 	public void loadDefaultQuestions(){
 		_questionList = new ArrayList<Question>();
 		_questionList.add(new Question(1, "How are you today?", Type.BUTTON));
@@ -50,6 +53,11 @@ public class QuestionActivity extends Activity {
 		_questionList.add(new Question(3, "How satisfied are you with life?", 
 																	Type.DRAG));
 	}
+	
+	/**
+	 * Switch forward or backward in the question queue
+	 * @param next True if moving forward in the queue; false if moving backward
+	 */
 	public void switchQuestion(boolean next){
 		if(next){
 			++_numQuestion;
@@ -89,7 +97,7 @@ public class QuestionActivity extends Activity {
 				switchQuestion(false);
 		}
 	}
-	
+
 	/**
 	 * Store answer information in the database and pass control to
 	 * the thank you activity
