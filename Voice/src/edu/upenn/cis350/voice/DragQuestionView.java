@@ -13,7 +13,7 @@ import android.content.Context;
 import android.view.View;
 
 public class DragQuestionView extends View implements VoiceViewI {
-	private RectF square =new RectF(100,200,200,300);
+	private RectF square =new RectF(590,400,690,500);
 	private int pic1topx=405;
 	private int pic2topx=695;
 	private int pic3topx=985;
@@ -29,7 +29,8 @@ public class DragQuestionView extends View implements VoiceViewI {
 	private RectF pic1 = new RectF(pic1topx, pic1topy, pic1bottomx, pic1bottomy);
 	private RectF pic2 = new RectF(pic2topx, pic2topy, pic2bottomx, pic2bottomy);
 	private RectF pic3 = new RectF(pic3topx, pic3topy, pic3bottomx, pic3bottomy);
-	private int answerInt=0;
+	private int answerInt;
+	private RectF insquare= new RectF(590,400, 590+ pic1.width(), 400 + pic1.height());
 	private int xtoffset=0;
 	private int ytoffset=0;
 	private int xboffset=0;
@@ -204,8 +205,31 @@ public class DragQuestionView extends View implements VoiceViewI {
 	}
 	
 	public void setAnswer(int prevAnswer){
-		//TODO: Implement this please! This should make allow the user to return to this question,
-		//and have the answer they gave still be selected
+		if(prevAnswer==-1){
+			return;
+		}
+		else if(prevAnswer==2){
+			pic3topx=(int) square.left;
+			pic3topy=(int) square.top;
+			pic3bottomx=(int) (pic3topx+pic3.width());
+			pic3bottomy=(int) (pic3topy+pic3.height());			
+			answerInt = prevAnswer;
+		}
+		else if(prevAnswer==6){
+			pic2topx=(int) square.left;
+			pic2topy=(int) square.top;
+			pic2bottomx=(int) (pic2topx+pic2.width());
+			pic2bottomy=(int) (pic2topy+pic2.height());	
+			answerInt = prevAnswer;
+		}
+		else if(prevAnswer==10){
+			pic1topx=(int) square.left;
+			pic1topy=(int) square.top;
+			pic1bottomx=(int) (pic1topx+pic1.width());
+			pic1bottomy=(int) (pic1topy+pic1.height());	
+			answerInt = prevAnswer;
+		}
+		invalidate();
 	}
 	
 	public void animate(){
