@@ -13,6 +13,7 @@ import android.content.Context;
 import android.view.View;
 
 public class DragQuestionView extends View implements VoiceViewI {
+	//Initial positions of all the shapes
 	private RectF square =new RectF(590,400,690,500);
 	private int pic1topx=405;
 	private int pic2topx=695;
@@ -30,7 +31,6 @@ public class DragQuestionView extends View implements VoiceViewI {
 	private RectF pic2 = new RectF(pic2topx, pic2topy, pic2bottomx, pic2bottomy);
 	private RectF pic3 = new RectF(pic3topx, pic3topy, pic3bottomx, pic3bottomy);
 	private int answerInt;
-	private RectF insquare= new RectF(590,400, 590+ pic1.width(), 400 + pic1.height());
 	private int xtoffset=0;
 	private int ytoffset=0;
 	private int xboffset=0;
@@ -59,7 +59,6 @@ public class DragQuestionView extends View implements VoiceViewI {
 	 * 
 	 *  @param- The canvas to draw
 	 */
-	
 	protected void onDraw(Canvas canvas) {
 		canvas.drawRGB(153, 255, 255);
 		int colorInt = Color.rgb(51,204,204);
@@ -97,8 +96,6 @@ public class DragQuestionView extends View implements VoiceViewI {
 		pic2.set((float)pic2topx, (float)pic2topy, (float)pic2bottomx, (float)pic2bottomy);
 		pic3.set((float)pic3topx, (float)pic3topy, (float)pic3bottomx, (float)pic3bottomy);
 		canvas.drawRect(square, paint);
-		
-
 		canvas.drawBitmap(bit1, null, pic1, paint);
 		canvas.drawBitmap(bit2, null, pic2, paint);
 		canvas.drawBitmap(bit3, null, pic3, paint);
@@ -132,7 +129,6 @@ public class DragQuestionView extends View implements VoiceViewI {
 			pic1bottomy=405;
 			pic1.set((float)pic1topx, (float)pic1topy, (float)pic1bottomx, (float)pic1bottomy);
 		}
-		//Update the x and y coordinates of each image
 	}
 	
 	/**
@@ -204,6 +200,10 @@ public class DragQuestionView extends View implements VoiceViewI {
 		return answerInt;
 	}
 	
+	/**
+	 * Reads the previous answer, and moves the corresponding puppy into the square
+	 * @param prevAnswer- the integer representation of the previous answer given
+	 */
 	public void setAnswer(int prevAnswer){
 		if(prevAnswer==-1){
 			return;
