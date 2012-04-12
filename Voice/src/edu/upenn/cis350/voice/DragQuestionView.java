@@ -64,16 +64,32 @@ public class DragQuestionView extends View implements VoiceViewI {
 		int colorInt = Color.rgb(51,204,204);
 		Paint paint = new Paint();
 		paint.setColor(colorInt);
-		
-		if(square.intersect(pic1) ){
-			answerInt = 10;
+		if(!RectF.intersects(pic1, square) && !RectF.intersects(pic2, square) && !RectF.intersects(pic3, square)){
+			answerInt = 0;
 		}
-		else if(square.intersect(pic2) ){
-			answerInt = 6;
+		else{
+			//Checks intersection with each picture. Note: cant have if-else structure here because that 
+			//means pic1 will never get kicked out.
+			if(RectF.intersects(pic1, square)){
+				if(answerInt!=10){
+					clearSquare();
+					answerInt = 10;
+				}
+			}
+			if(RectF.intersects(pic2, square) ){
+				if(answerInt!=6){
+					clearSquare();
+					answerInt = 6;
+				}
+			}
+			if(RectF.intersects(pic3, square) ){
+				if(answerInt!=2){
+					clearSquare();
+					answerInt = 2;
+				}
+			}
 		}
-		else if(square.intersect(pic3) ){
-			answerInt = 2;
-		}
+
 		//Update the x and y coordinates of each image
 		square.set(590,400,690,500);
 		pic1.set((float)pic1topx, (float)pic1topy, (float)pic1bottomx, (float)pic1bottomy);
@@ -85,6 +101,37 @@ public class DragQuestionView extends View implements VoiceViewI {
 		canvas.drawBitmap(bit1, null, pic1, paint);
 		canvas.drawBitmap(bit2, null, pic2, paint);
 		canvas.drawBitmap(bit3, null, pic3, paint);
+	}
+	/**
+	 * Detects which image is currently in box using answerInt, and throws that image out
+	 * of the box 
+	 */
+	private void clearSquare(){
+		if(answerInt==0){
+			return;
+		}
+		else if(answerInt==6){
+			pic2topx=695 ;
+			pic2topy=205;
+			pic2bottomx= 795;
+			pic2bottomy= 305;
+			pic2.set((float)pic2topx, (float)pic2topy, (float)pic2bottomx, (float)pic2bottomy);
+		}
+		else if(answerInt==2){
+			pic3topx=985;
+			pic3topy=405;
+			pic3bottomx=1085;
+			pic3bottomy=505;
+			pic3.set((float)pic3topx, (float)pic3topy, (float)pic3bottomx, (float)pic3bottomy);
+		}
+		else if(answerInt==10){
+			pic1topx=405;
+			pic1topy=305;
+			pic1bottomx=505;
+			pic1bottomy=405;
+			pic1.set((float)pic1topx, (float)pic1topy, (float)pic1bottomx, (float)pic1bottomy);
+		}
+		//Update the x and y coordinates of each image
 	}
 	
 	/**
