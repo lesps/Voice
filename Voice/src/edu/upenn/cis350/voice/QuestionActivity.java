@@ -117,9 +117,7 @@ public class QuestionActivity extends Activity {
 			
 			ArrayList<String> ans = _dataManager.getAllAnswers();
 		    _dataManager.close();
-		}catch(SQLiteException e){
-			//Catching exception so the app doesn't crash and just goes to the thank you screen
-		}
+		}catch(SQLiteException e){}
 		Intent i = new Intent(this, ThankYouActivity.class);
 		startActivity(i);
 	}
