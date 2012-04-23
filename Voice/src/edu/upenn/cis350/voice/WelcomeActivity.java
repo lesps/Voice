@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import edu.upenn.cis350.voice.db.DBManager;
 import edu.upenn.cis350.voice.db.VoiceCallback;
@@ -11,6 +13,7 @@ import edu.upenn.cis350.voice.db.VoiceCallback;
 import android.app.Activity;
 import com.parse.ParseException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
@@ -24,6 +27,8 @@ public class WelcomeActivity extends Activity {
 
 	private DBManager _db;
 
+	private Timer synchTimer = new Timer();
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,9 +39,28 @@ public class WelcomeActivity extends Activity {
 			_db = new DBManager(this);
 		} catch(SQLiteException e){}
 		setContentView(R.layout.welcome);
-
+		
+		//Sync with parse every 5 minutes
+		long interval = 60*5*1000;
+		synchTimer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				AutoSync();
+			}
+		}, 0,interval);
+	}
+	
+	private void AutoSync()
+	{
+		this.runOnUiThread(new Runnable() {
+			public void run() {
+				synchronizeQuestions();
+				synchronizeAnswers();
+			}
+		});
 	}
 
+	
 	public ArrayList<Integer> parseAnswer(String ans){
 		Scanner scan = new Scanner(ans);
 		scan.useDelimiter(","); //For CSV string
@@ -49,7 +73,6 @@ public class WelcomeActivity extends Activity {
 	 * Synchronize with the Parse database
 	 */
 	public void synchronizeAnswers(){
-
 		try{
 			_db.open();
 			ParseObject syncAnswer;
