@@ -10,43 +10,46 @@ import android.content.Context;
 
 public class ButtonQuestionView extends View implements VoiceViewI {
 	
-	private Bitmap _superHappy, _happy, _neutral, _sad, _crying, _angry;
-	private Bitmap _pressedSuperHappy, _pressedHappy, _pressedNeutral, _pressedSad, _pressedCrying, _pressedAngry;
+	private Bitmap _superHappy, _happy, _neutral, _sad, _crying, setUp;
+	private Bitmap _pressedSuperHappy, _pressedHappy, _pressedNeutral, _pressedSad, _pressedCrying;
 	private Bitmap _selected;
 	
 	public ButtonQuestionView(Context c) {
 		super(c);
-		_superHappy = BitmapFactory.decodeResource(getResources(), R.drawable.superhappy);
-		_happy = BitmapFactory.decodeResource(getResources(), R.drawable.happy);
-		_neutral = BitmapFactory.decodeResource(getResources(), R.drawable.neutral);
-		_sad = BitmapFactory.decodeResource(getResources(), R.drawable.sad);
-		_crying = BitmapFactory.decodeResource(getResources(), R.drawable.crying);
-		_angry = BitmapFactory.decodeResource(getResources(), R.drawable.angry);
-		_pressedSuperHappy = BitmapFactory.decodeResource(getResources(), R.drawable.superhappy_pressed);
-		_pressedHappy = BitmapFactory.decodeResource(getResources(), R.drawable.happy_pressed);
-		_pressedNeutral = BitmapFactory.decodeResource(getResources(), R.drawable.neutral_pressed);
-		_pressedSad = BitmapFactory.decodeResource(getResources(), R.drawable.sad_pressed);
-		_pressedCrying = BitmapFactory.decodeResource(getResources(), R.drawable.crying_pressed);
-		_pressedAngry = BitmapFactory.decodeResource(getResources(), R.drawable.angry_pressed);
+		setUp();
 	}
 	public ButtonQuestionView(Context c, AttributeSet a) {
 		super(c, a);
-		_superHappy = BitmapFactory.decodeResource(getResources(), R.drawable.superhappy);
-		_happy = BitmapFactory.decodeResource(getResources(), R.drawable.happy);
-		_neutral = BitmapFactory.decodeResource(getResources(), R.drawable.neutral);
-		_sad = BitmapFactory.decodeResource(getResources(), R.drawable.sad);
-		_crying = BitmapFactory.decodeResource(getResources(), R.drawable.crying);
-		_angry = BitmapFactory.decodeResource(getResources(), R.drawable.angry);
-		_pressedSuperHappy = BitmapFactory.decodeResource(getResources(), R.drawable.superhappy_pressed);
-		_pressedHappy = BitmapFactory.decodeResource(getResources(), R.drawable.happy_pressed);
-		_pressedNeutral = BitmapFactory.decodeResource(getResources(), R.drawable.neutral_pressed);
-		_pressedSad = BitmapFactory.decodeResource(getResources(), R.drawable.sad_pressed);
-		_pressedCrying = BitmapFactory.decodeResource(getResources(), R.drawable.crying_pressed);
-		_pressedAngry = BitmapFactory.decodeResource(getResources(), R.drawable.angry_pressed);
+		setUp();
+	}
+	
+	//Sets up the buttons and resizes them
+	private void setUp(){
+		_superHappy = BitmapFactory.decodeResource(getResources(), R.drawable.happypup);
+		_happy = BitmapFactory.decodeResource(getResources(), R.drawable.lesshappypup);
+		_neutral = BitmapFactory.decodeResource(getResources(), R.drawable.neutralpup);
+		_sad = BitmapFactory.decodeResource(getResources(), R.drawable.sadpup);
+		_crying = BitmapFactory.decodeResource(getResources(), R.drawable.verysadpup);
+		_pressedSuperHappy = BitmapFactory.decodeResource(getResources(), R.drawable.happypup_pressed);
+		_pressedHappy = BitmapFactory.decodeResource(getResources(), R.drawable.lesshappypup_pressed);
+		_pressedNeutral = BitmapFactory.decodeResource(getResources(), R.drawable.neutralpup_pressed);
+		_pressedSad = BitmapFactory.decodeResource(getResources(), R.drawable.sadpup_pressed);
+		_pressedCrying = BitmapFactory.decodeResource(getResources(), R.drawable.verysadpup_pressed);
+		
+		_superHappy = setUp.createScaledBitmap(_superHappy, 100, 77, false);
+		_happy = setUp.createScaledBitmap(_happy, 100, 77, false);
+		_neutral = setUp.createScaledBitmap(_neutral, 100, 77, false);
+		_sad = setUp.createScaledBitmap(_sad, 100, 77, false);;
+		_crying = setUp.createScaledBitmap(_crying, 100, 77, false);
+		_pressedSuperHappy = setUp.createScaledBitmap(_pressedSuperHappy, 100, 77, false);
+		_pressedHappy = setUp.createScaledBitmap(_pressedHappy, 100, 77, false);
+		_pressedNeutral = setUp.createScaledBitmap(_pressedNeutral, 100, 77, false);
+		_pressedSad = setUp.createScaledBitmap(_pressedSad, 100, 77, false);
+		_pressedCrying = setUp.createScaledBitmap(_pressedCrying, 100, 77, false);
 	}
 	
 	protected void onDraw(Canvas canvas) {
-		canvas.drawRGB(126, 93, 182);
+		canvas.drawRGB(255, 48, 48);
 		if (_selected == _superHappy)
 			canvas.drawBitmap(_pressedSuperHappy, 400, 160, null);
 		else
@@ -60,17 +63,13 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		else
 			canvas.drawBitmap(_neutral, 720, 160, null);
 		if (_selected == _sad)
-			canvas.drawBitmap(_pressedSad, 400, 320, null);
+			canvas.drawBitmap(_pressedSad, 500, 320, null);
 		else
-			canvas.drawBitmap(_sad, 400, 320, null);
+			canvas.drawBitmap(_sad, 500, 320, null);
 		if (_selected == _crying)
-			canvas.drawBitmap(_pressedCrying, 560, 320, null);
+			canvas.drawBitmap(_pressedCrying, 660, 320, null);
 		else
-			canvas.drawBitmap(_crying, 560, 320, null);
-		if (_selected == _angry)
-			canvas.drawBitmap(_pressedAngry, 720, 320, null);
-		else
-			canvas.drawBitmap(_angry, 720, 320, null);
+			canvas.drawBitmap(_crying, 660, 320, null);
 	}
 	
 	/**
@@ -98,16 +97,12 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 				_selected = _neutral;
 				return true;
 			}
-			else if (x >= 400 && x <= 500 && y >= 320 && y <= 420) {	//Sad
+			else if (x >= 500 && x <= 600 && y >= 320 && y <= 396) {	//Sad
 				_selected = _sad;
 				return true;
 			}
-			else if (x >= 560 && x <= 660 && y >= 320 && y <= 420) {	//Crying
+			else if (x >= 660 && x <= 760 && y >= 320 && y <= 396) {	//Crying
 				_selected = _crying;
-				return true;
-			}
-			else if (x >= 720 && x <= 820 && y >= 320 && y <= 420) {	//Angry
-				_selected = _angry;
 				return true;
 			}
 			else return false;
@@ -128,8 +123,6 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 			return 4;
 		else if (_selected == _crying)
 			return 2;
-		else if (_selected == _angry)
-			return 0;
 		else return -1;
 		
 	}
@@ -152,9 +145,6 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 				return;
 			case 2:
 				_selected = _crying;
-				return;
-			case 0:
-				_selected = _angry;
 				return;
 			default:
 				return;
