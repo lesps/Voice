@@ -24,9 +24,9 @@ public class DragQuestionView extends View implements VoiceViewI {
 	private int pic1bottomx = 505;
 	private int pic2bottomx = 795;
 	private int pic3bottomx = 1085;
-	private int pic1bottomy = 405;
-	private int pic2bottomy = 305;
-	private int pic3bottomy = 505;
+	private int pic1bottomy = 382;
+	private int pic2bottomy = 282;
+	private int pic3bottomy = 482;
 	private RectF pic1 = new RectF(pic1topx, pic1topy, pic1bottomx, pic1bottomy);
 	private RectF pic2 = new RectF(pic2topx, pic2topy, pic2bottomx, pic2bottomy);
 	private RectF pic3 = new RectF(pic3topx, pic3topy, pic3bottomx, pic3bottomy);
@@ -263,81 +263,43 @@ public class DragQuestionView extends View implements VoiceViewI {
 
 		if (num == 1) {
 			// Increase the y value incrementally until it hits a max size
-			while (pic1topy > 150) {
-				pic1topy = pic1topy - 2;
-				pic1bottomx = pic1bottomx + 1;
-				pic1topx = pic1topx - 1;
-				invalidate();
-			}
+				pic1topy = pic1topy-231;
+				pic1bottomx = pic1bottomx + 150;
+				pic1topx = pic1topx - 150;
 		} else if (num == 2) {
-			while (pic2topy > 150) {
-				pic2topy = pic2topy - 2;
-				pic2bottomx = pic2bottomx + 1;
-				pic2topx = pic2topx - 1;
-				invalidate();
-			}
+				pic2topy = pic2topy - 231;
+				pic2bottomx = pic2bottomx + 150;
+				pic2topx = pic2topx - 150;
 		} else if (num == 3) {
-			while (pic3topy > 150) {
-				pic3topy = pic3topy - 2;
-				pic3bottomx = pic3bottomx + 1;
-				pic3topx = pic3topx - 1;
-				invalidate();
-			}
+				pic3topy = pic3topy - 231;
+				pic3bottomx = pic3bottomx + 150;
+				pic3topx = pic3topx - 150;
 		}
 
 	}
 
-	/**
-	 * Removes every image not in the answer box by moving it off the screen as
-	 * part of the animation.
-	 * 
-	 * @param num- the image that won't be removed
-	 */
-	private void removeAllElse(int num) {
-		//Move every other image until they're off the screen. 
-		for (int inCan = 0; inCan < 500; inCan++) {
-			if (num == 1) {
-				move(2, -1);
-				move(3, 1);
-				invalidate();
-
-			} 
-			else if (num == 2) {
-				move(1, 1);
-				move(3, -1);
-				invalidate();
-
-			} 
-			else if (num == 3) {
-				move(1, 1);
-				move(2, -1);
-				invalidate();
-			}
-		}
-
-	}
 	/**
 	 * Move the image indicated by num by the given increment
 	 * 
 	 * @param num- the image to be moved
 	 * @param increment- the increment to move the image by
 	 */
-	private void move(int num, int increment) {
+	private void move(int num) {
 		if (num == 1) {
-			pic1topx += increment;
-			pic1topy += increment;
-			pic1bottomx += increment;
-			pic1bottomy += increment;
+			pic1topx =200;
+			pic1topy = 200;
+			pic1bottomx = 200;
+			pic1bottomy = 200;
 		} else if (num == 2) {
-			pic2topx += increment;
-			pic2topy += increment;
-			pic2bottomx += increment;
-			pic2bottomy += increment;
+			pic2topx = 200;
+			pic2topy = 200;
+			pic2bottomx = 200;
+			pic2bottomy = 200;
 		} else if (num == 3) {
-			pic3topx += increment;
-			pic3topy += increment;
-			pic3bottomx += increment;
-			pic3bottomy += increment;
+			pic3topx = 200;
+			pic3topy = 200;
+			pic3bottomx = 200;
+			pic3bottomy = 200;
 		}
 	}
 	/**
@@ -348,21 +310,23 @@ public class DragQuestionView extends View implements VoiceViewI {
 		isAnimation = true;
 		if (answerInt == 10) {
 			setAnswer(10);
+			move(2);
+			move(3);
 			grow(1);
-			removeAllElse(1);
 		}
 		if (answerInt == 6) {
-			setAnswer(6);
+			move(3);
+			move(1);
 			grow(2);
-			removeAllElse(2);
 		}
 		if (answerInt == 2) {
-			setAnswer(2);
-			removeAllElse(3);
+			move(1);
+			move(2);
 			grow(3);
 		}
+		invalidate();
 		isAnimation = false;
-
+		
 	}
 
 }

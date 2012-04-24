@@ -23,16 +23,29 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 	    android:layout_weight="1" 
-	    android:background="#6699ff">
+	    android:background="#6699ff"
+	    android:orientation="vertical">
+		
 
 		<edu.upenn.cis350.voice.SliderQuestionView
 		    android:id="@+id/sliderQuestionView"
 		    android:layout_width="900dp"
 		    android:layout_height="100dp"
-		    android:layout_gravity="center|center_horizontal|center_vertical"
-		    android:layout_marginLeft="190dp"
+		    android:layout_marginTop="100dp"
+		    android:layout_gravity="center|center_horizontal"
 		    android:indeterminateOnly="false"
 		    android:progressDrawable="@drawable/scrollbar_progress" />
+		
+		<TextView
+		    android:id = "@+id/SliderNums"
+		    android:layout_width = "wrap_content"
+		    android:layout_height = "wrap_content"
+		    android:textSize = "40dp"
+		    android:paddingTop="5dp"
+		    android:layout_marginLeft="175dp"
+		    android:gravity="center|center_horizontal"
+		    android:text = "1         2         3         4         6         7         8         9         10"
+		    android:textColor="#000000" />
 	
 	</LinearLayout>
     

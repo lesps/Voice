@@ -13,6 +13,8 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 	private Bitmap _superHappy, _happy, _neutral, _sad, _crying, setUp;
 	private Bitmap _pressedSuperHappy, _pressedHappy, _pressedNeutral, _pressedSad, _pressedCrying;
 	private Bitmap _selected;
+	private Bitmap lastDrawn;
+	private boolean animate;
 	
 	public ButtonQuestionView(Context c) {
 		super(c);
@@ -46,10 +48,15 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		_pressedNeutral = setUp.createScaledBitmap(_pressedNeutral, 100, 77, false);
 		_pressedSad = setUp.createScaledBitmap(_pressedSad, 100, 77, false);
 		_pressedCrying = setUp.createScaledBitmap(_pressedCrying, 100, 77, false);
+		
+		animate = false;
+
 	}
 	
 	protected void onDraw(Canvas canvas) {
-		canvas.drawRGB(255, 48, 48);
+		//Sets the canvas pastel yellow
+		canvas.drawRGB(238, 221, 130);
+		if(!animate){
 		if (_selected == _superHappy)
 			canvas.drawBitmap(_pressedSuperHappy, 400, 160, null);
 		else
@@ -70,6 +77,10 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 			canvas.drawBitmap(_pressedCrying, 660, 320, null);
 		else
 			canvas.drawBitmap(_crying, 660, 320, null);
+		}
+		if(animate){
+			canvas.drawBitmap(lastDrawn, 500, 150, null);
+		}
 	}
 	
 	/**
@@ -150,8 +161,39 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 				return;
 		}
 	}
-	
-	public void animate(){
-		
+
+	/**
+	 * Moves all unselected images off the canvas, and blows up the selected image
+	 * 
+	 */
+	public void animate() {
+		animate = true;
+		int answerInt = getAnswer();
+		if (answerInt == 10) {
+			_superHappy = BitmapFactory.decodeResource(getResources(), R.drawable.happypup);
+			lastDrawn = setUp.createScaledBitmap(_superHappy, 300, 231, false);
+		}
+		else if (answerInt == 8) {
+			_happy = BitmapFactory.decodeResource(getResources(), R.drawable.lesshappypup);
+			lastDrawn = setUp.createScaledBitmap(_happy, 300, 231, false);
+		}
+		else if (answerInt == 6) {
+			_neutral = BitmapFactory.decodeResource(getResources(), R.drawable.neutralpup);
+			lastDrawn = setUp.createScaledBitmap(_neutral, 300, 231, false);
+		}
+		else if (answerInt == 4) {
+			_sad = BitmapFactory.decodeResource(getResources(), R.drawable.sadpup);
+			lastDrawn = setUp.createScaledBitmap(_sad, 300, 231, false);
+		}
+		else if (answerInt == 2) {
+			_crying = BitmapFactory.decodeResource(getResources(), R.drawable.verysadpup);
+			lastDrawn = setUp.createScaledBitmap(_crying, 300, 231, false);
+		}
+		else{
+			animate = false;
+		}
+		invalidate();
+
 	}
+
 }
