@@ -121,11 +121,6 @@ public class WelcomeActivity extends Activity {
 		query.findInBackground(callback);
 		
 	}
-
-	public void onSynchronizeClick(View view){
-		synchronizeQuestions();
-		synchronizeAnswers();
-	}
 	
 	public void updateQuestions(List<ParseObject> list){
 		ArrayList<Question> qlist = new ArrayList<Question>();
