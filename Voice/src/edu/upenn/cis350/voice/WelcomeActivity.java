@@ -41,7 +41,7 @@ public class WelcomeActivity extends Activity {
 		setContentView(R.layout.welcome);
 		
 		//Sync with parse every 5 minutes
-		long interval = 60*5*1000;
+		long interval = 10*1*1000;
 		synchTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {

@@ -124,21 +124,21 @@ public class DragQuestionView extends View implements VoiceViewI {
 			pic2topx = 695;
 			pic2topy = 205;
 			pic2bottomx = 795;
-			pic2bottomy = 305;
+			pic2bottomy = 282;
 			pic2.set((float) pic2topx, (float) pic2topy, (float) pic2bottomx, (float) pic2bottomy);
 		} 
 		else if (answerInt == 2) {
 			pic3topx = 985;
 			pic3topy = 405;
 			pic3bottomx = 1085;
-			pic3bottomy = 505;
+			pic3bottomy = 482;
 			pic3.set((float) pic3topx, (float) pic3topy, (float) pic3bottomx, (float) pic3bottomy);
 		} 
 		else if (answerInt == 10) {
 			pic1topx = 405;
 			pic1topy = 305;
 			pic1bottomx = 505;
-			pic1bottomy = 405;
+			pic1bottomy = 382;
 			pic1.set((float) pic1topx, (float) pic1topy, (float) pic1bottomx, (float) pic1bottomy);
 		}
 	}
