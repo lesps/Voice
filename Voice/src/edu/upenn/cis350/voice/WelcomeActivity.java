@@ -91,9 +91,15 @@ public class WelcomeActivity extends Activity {
 
 	public Question constructQuestion(ParseObject p){
 		String text = p.getString("Text");
+		if(text==null)
+			return null;
 		int num = p.getInt("Number");
+		if(num==0)
+			return null;
 		Type t = null;
 		String type = p.getString("Type");
+		if(type==null)
+			return null;
 		if(type.equalsIgnoreCase("button"))
 			t = Type.BUTTON;
 		else if(type.equalsIgnoreCase("wheel"))
