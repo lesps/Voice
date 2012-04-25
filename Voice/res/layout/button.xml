@@ -17,12 +17,28 @@
 		    android:text="@string/button_question" />
 
 	</LinearLayout>
-
+	<LinearLayout
+	    android:id="@+id/linearLayoutView"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1" 
+	    android:background="#eedd82"
+	    android:orientation="vertical">
+		
+		<TextView
+		    android:id="@+id/dragText"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="36dp"
+		    android:textColor="#b8860b"
+		    android:text="Please select an image as an answer." />
+		
 	<edu.upenn.cis350.voice.ButtonQuestionView
 	    android:id="@+id/buttonQuestionView"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 	    android:layout_weight="1" />
+	</LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout1"

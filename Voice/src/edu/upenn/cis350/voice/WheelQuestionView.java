@@ -15,18 +15,29 @@ public class WheelQuestionView extends View implements VoiceViewI {
 	private float _degrees = 0;	
 	private Matrix _spinMatrix = new Matrix();
 	private float _initx, _inity = 0.0f;
+	private boolean isAnimate;
 	
 	public WheelQuestionView(Context c) {
 		super(c);
 		_spinner = BitmapFactory.decodeResource(getResources(), R.drawable.spinner);
+		isAnimate = false;
 	}
 	public WheelQuestionView(Context c, AttributeSet a) {
 		super(c, a);
 		_spinner = BitmapFactory.decodeResource(getResources(), R.drawable.spinner);
+		isAnimate = false;
 	}
 	
 	protected void onDraw(Canvas canvas) {
 		canvas.drawBitmap(_spinner, _spinMatrix, null);
+		if(isAnimate){
+			float end = _degrees+ 60;
+			setAnswer(getAnswer());
+			for(float rotate = _degrees; rotate< end; rotate++){
+				_spinMatrix.preRotate(rotate, _spinner.getWidth()/2, _spinner.getWidth()/2);
+				invalidate();
+			}
+		}
 	}
 	
 	@Override
@@ -125,6 +136,7 @@ public class WheelQuestionView extends View implements VoiceViewI {
 	}
 	
 	public void animate(){
-		
+		isAnimate = true;
+		invalidate();
 	}
 }

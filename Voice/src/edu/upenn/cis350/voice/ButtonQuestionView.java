@@ -15,6 +15,7 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 	private Bitmap _selected;
 	private Bitmap lastDrawn;
 	private boolean animate;
+	private int width=200, height=154;
 	
 	public ButtonQuestionView(Context c) {
 		super(c);
@@ -38,16 +39,16 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		_pressedSad = BitmapFactory.decodeResource(getResources(), R.drawable.sadpup_pressed);
 		_pressedCrying = BitmapFactory.decodeResource(getResources(), R.drawable.verysadpup_pressed);
 		
-		_superHappy = setUp.createScaledBitmap(_superHappy, 100, 77, false);
-		_happy = setUp.createScaledBitmap(_happy, 100, 77, false);
-		_neutral = setUp.createScaledBitmap(_neutral, 100, 77, false);
-		_sad = setUp.createScaledBitmap(_sad, 100, 77, false);;
-		_crying = setUp.createScaledBitmap(_crying, 100, 77, false);
-		_pressedSuperHappy = setUp.createScaledBitmap(_pressedSuperHappy, 100, 77, false);
-		_pressedHappy = setUp.createScaledBitmap(_pressedHappy, 100, 77, false);
-		_pressedNeutral = setUp.createScaledBitmap(_pressedNeutral, 100, 77, false);
-		_pressedSad = setUp.createScaledBitmap(_pressedSad, 100, 77, false);
-		_pressedCrying = setUp.createScaledBitmap(_pressedCrying, 100, 77, false);
+		_superHappy = setUp.createScaledBitmap(_superHappy, width, height, false);
+		_happy = setUp.createScaledBitmap(_happy, width, height, false);
+		_neutral = setUp.createScaledBitmap(_neutral, width, height, false);
+		_sad = setUp.createScaledBitmap(_sad, width, height, false);;
+		_crying = setUp.createScaledBitmap(_crying, width, height, false);
+		_pressedSuperHappy = setUp.createScaledBitmap(_pressedSuperHappy, width, height, false);
+		_pressedHappy = setUp.createScaledBitmap(_pressedHappy, width, height, false);
+		_pressedNeutral = setUp.createScaledBitmap(_pressedNeutral, width, height, false);
+		_pressedSad = setUp.createScaledBitmap(_pressedSad, width, height, false);
+		_pressedCrying = setUp.createScaledBitmap(_pressedCrying, width, height, false);
 		
 		animate = false;
 
@@ -58,28 +59,28 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		canvas.drawRGB(238, 221, 130);
 		if(!animate){
 		if (_selected == _superHappy)
-			canvas.drawBitmap(_pressedSuperHappy, 400, 160, null);
+			canvas.drawBitmap(_pressedSuperHappy, 300, 70, null);
 		else
-			canvas.drawBitmap(_superHappy, 400, 160, null);
+			canvas.drawBitmap(_superHappy, 300, 70, null);
 		if (_selected == _happy)
-			canvas.drawBitmap(_pressedHappy, 560, 160, null);
+			canvas.drawBitmap(_pressedHappy, 560, 70, null);
 		else
-			canvas.drawBitmap(_happy, 560, 160, null);
+			canvas.drawBitmap(_happy, 560, 70, null);
 		if (_selected == _neutral)
-			canvas.drawBitmap(_pressedNeutral, 720, 160, null);
+			canvas.drawBitmap(_pressedNeutral, 820, 70, null);
 		else
-			canvas.drawBitmap(_neutral, 720, 160, null);
+			canvas.drawBitmap(_neutral, 820, 70, null);
 		if (_selected == _sad)
-			canvas.drawBitmap(_pressedSad, 500, 320, null);
+			canvas.drawBitmap(_pressedSad, 440, 290, null);
 		else
-			canvas.drawBitmap(_sad, 500, 320, null);
+			canvas.drawBitmap(_sad, 440, 290, null);
 		if (_selected == _crying)
-			canvas.drawBitmap(_pressedCrying, 660, 320, null);
+			canvas.drawBitmap(_pressedCrying, 700, 290, null);
 		else
-			canvas.drawBitmap(_crying, 660, 320, null);
+			canvas.drawBitmap(_crying, 700, 290, null);
 		}
 		if(animate){
-			canvas.drawBitmap(lastDrawn, 500, 150, null);
+			canvas.drawBitmap(lastDrawn, 470, 100, null);
 		}
 	}
 	
@@ -96,23 +97,23 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		float y = event.getY();
 		
 		if (eventAction==MotionEvent.ACTION_DOWN) {
-			if (x >= 400 && x <= 500 && y >= 160 && y <= 260) { 		//SuperHappy
+			if (x >= 300 && x <= 500 && y >= 70 && y <= 224) { 		//SuperHappy
 				_selected = _superHappy;
 				return true;
 			}
-			else if (x >= 560 && x <= 660 && y >= 160 && y <= 260) { 	//Happy
+			else if (x >= 560 && x <= 760 && y >= 160 && y <= 224) { 	//Happy
 				_selected = _happy;
 				return true;
 			}
-			else if (x >= 720 && x <= 820 && y >= 160 && y <= 260) {	//Neutral
+			else if (x >= 820 && x <= 1020 && y >= 160 && y <= 224) {	//Neutral
 				_selected = _neutral;
 				return true;
 			}
-			else if (x >= 500 && x <= 600 && y >= 320 && y <= 396) {	//Sad
+			else if (x >= 440 && x <= 640 && y >= 380 && y <= 444) {	//Sad
 				_selected = _sad;
 				return true;
 			}
-			else if (x >= 660 && x <= 760 && y >= 320 && y <= 396) {	//Crying
+			else if (x >= 700 && x <= 900 && y >= 380 && y <= 444) {	//Crying
 				_selected = _crying;
 				return true;
 			}
@@ -171,23 +172,23 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		int answerInt = getAnswer();
 		if (answerInt == 10) {
 			_superHappy = BitmapFactory.decodeResource(getResources(), R.drawable.happypup);
-			lastDrawn = setUp.createScaledBitmap(_superHappy, 300, 231, false);
+			lastDrawn = setUp.createScaledBitmap(_superHappy, 2*width, 2*height, false);
 		}
 		else if (answerInt == 8) {
 			_happy = BitmapFactory.decodeResource(getResources(), R.drawable.lesshappypup);
-			lastDrawn = setUp.createScaledBitmap(_happy, 300, 231, false);
+			lastDrawn = setUp.createScaledBitmap(_happy, 2*width, 2*height, false);
 		}
 		else if (answerInt == 6) {
 			_neutral = BitmapFactory.decodeResource(getResources(), R.drawable.neutralpup);
-			lastDrawn = setUp.createScaledBitmap(_neutral, 300, 231, false);
+			lastDrawn = setUp.createScaledBitmap(_neutral, 2*width, 2*height, false);
 		}
 		else if (answerInt == 4) {
 			_sad = BitmapFactory.decodeResource(getResources(), R.drawable.sadpup);
-			lastDrawn = setUp.createScaledBitmap(_sad, 300, 231, false);
+			lastDrawn = setUp.createScaledBitmap(_sad, 2*width, 2*height, false);
 		}
 		else if (answerInt == 2) {
 			_crying = BitmapFactory.decodeResource(getResources(), R.drawable.verysadpup);
-			lastDrawn = setUp.createScaledBitmap(_crying, 300, 231, false);
+			lastDrawn = setUp.createScaledBitmap(_crying, 2*width, 2*height, false);
 		}
 		else{
 			animate = false;

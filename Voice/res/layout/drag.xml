@@ -18,11 +18,29 @@
 
 	</LinearLayout> 
 	
+	<LinearLayout
+	    android:id="@+id/linearLayoutView"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1" 
+	    android:background="#99FFFF"
+	    android:orientation="vertical">
+		
+		<TextView
+		    android:id="@+id/dragText"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="36dp"
+		    android:textColor="#5f9ea0"
+		    android:text="Please drag your image-response into the box." />
+		
 	<edu.upenn.cis350.voice.DragQuestionView
         android:id="@+id/dragQuestionView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"  />
+	
+	</LinearLayout>
 	
     <LinearLayout
         android:id="@+id/linearLayout1"

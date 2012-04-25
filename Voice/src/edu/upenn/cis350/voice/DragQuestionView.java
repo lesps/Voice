@@ -14,48 +14,44 @@ import android.view.View;
 
 public class DragQuestionView extends View implements VoiceViewI {
 	//Initial positions of all the shapes
-	private RectF square = new RectF(590, 400, 690, 500);
-	private int pic1topx = 405;
-	private int pic2topx = 695;
+	private RectF square = new RectF(590, 300, 790, 500);
+	private int pic1topx = 205;
+	private int pic2topx = 495;
 	private int pic3topx = 985;
 	private int pic1topy = 305;
-	private int pic2topy = 205;
-	private int pic3topy = 405;
-	private int pic1bottomx = 505;
-	private int pic2bottomx = 795;
-	private int pic3bottomx = 1085;
-	private int pic1bottomy = 382;
-	private int pic2bottomy = 282;
-	private int pic3bottomy = 482;
-	private RectF pic1 = new RectF(pic1topx, pic1topy, pic1bottomx, pic1bottomy);
-	private RectF pic2 = new RectF(pic2topx, pic2topy, pic2bottomx, pic2bottomy);
-	private RectF pic3 = new RectF(pic3topx, pic3topy, pic3bottomx, pic3bottomy);
-	private int answerInt;
+	private int pic2topy = 50;
+	private int pic3topy = 150;
+	private int height = 154;
+	private int width = 200;
+	private int answerInt=-1;
 	private int xtoffset = 0;
 	private int ytoffset = 0;
-	private int xboffset = 0;
-	private int yboffset = 0;
 	private boolean is1, is2, is3, isPressed, isAnimation = false;
-	private Bitmap bit1, bit2, bit3;
+	private Bitmap bit1, bit2, bit3, setUp;
 
 	public DragQuestionView(Context c) {
 		super(c);
-		bit1 = BitmapFactory.decodeResource(this.getResources(),
-				R.drawable.happypup);
-		bit2 = BitmapFactory.decodeResource(this.getResources(),
-				R.drawable.neutralpup);
-		bit3 = BitmapFactory.decodeResource(this.getResources(),
-				R.drawable.verysadpup);
+		setUpDrag();
 	}
 
 	public DragQuestionView(Context c, AttributeSet a) {
 		super(c, a);
+		setUpDrag();
+	}
+	
+	private void setUpDrag(){
+		height = 154;
+		width = 200;
 		bit1 = BitmapFactory.decodeResource(this.getResources(),
 				R.drawable.happypup);
 		bit2 = BitmapFactory.decodeResource(this.getResources(),
 				R.drawable.neutralpup);
 		bit3 = BitmapFactory.decodeResource(this.getResources(),
 				R.drawable.verysadpup);
+		
+		bit1 = setUp.createScaledBitmap(bit1, width, height, false);
+		bit2 = setUp.createScaledBitmap(bit2, width, height, false);
+		bit3 = setUp.createScaledBitmap(bit3, width, height, false);
 	}
 
 	/**
@@ -70,27 +66,27 @@ public class DragQuestionView extends View implements VoiceViewI {
 		int colorInt = Color.rgb(51, 204, 204);
 		Paint paint = new Paint();
 		paint.setColor(colorInt);
-		if (!isAnimation && !RectF.intersects(pic1, square)
-				&& !RectF.intersects(pic2, square)
-				&& !RectF.intersects(pic3, square)) {
-			answerInt = 0;
+		if (!isAnimation && !square.intersects(pic1topx, pic1topy, pic1topx+width, pic1topy+height)
+				&& !square.intersects(pic2topx, pic2topy, pic2topx+width, pic2topy+height)
+				&& !square.intersects(pic3topx, pic3topy, pic3topx+width, pic3topy+height)) {
+			answerInt = -1;
 		} else if (!isAnimation) {
 			// Checks intersection with each picture. Note: cant have if-else
 			// structure here because that
 			// means pic1 will never get kicked out.
-			if (RectF.intersects(pic1, square)) {
+			if (square.intersects(pic1topx, pic1topy, pic1topx+width, pic1topy+height)) {
 				if (answerInt != 10) {
 					clearSquare();
 					answerInt = 10;
 				}
 			}
-			if (RectF.intersects(pic2, square)) {
+			if (square.intersects(pic2topx, pic2topy, pic2topx+width, pic2topy+height)) {
 				if (answerInt != 6) {
 					clearSquare();
 					answerInt = 6;
 				}
 			}
-			if (RectF.intersects(pic3, square)) {
+			if (square.intersects(pic3topx, pic3topy, pic3topx+width, pic3topy+height)) {
 				if (answerInt != 2) {
 					clearSquare();
 					answerInt = 2;
@@ -99,17 +95,11 @@ public class DragQuestionView extends View implements VoiceViewI {
 		}
 
 		// Update the x and y coordinates of each image
-		square.set(590, 400, 690, 500);
-		pic1.set((float) pic1topx, (float) pic1topy, (float) pic1bottomx,
-				(float) pic1bottomy);
-		pic2.set((float) pic2topx, (float) pic2topy, (float) pic2bottomx,
-				(float) pic2bottomy);
-		pic3.set((float) pic3topx, (float) pic3topy, (float) pic3bottomx,
-				(float) pic3bottomy);
+		square.set(590, 300, 790, 500);
 		canvas.drawRect(square, paint);
-		canvas.drawBitmap(bit1, null, pic1, paint);
-		canvas.drawBitmap(bit2, null, pic2, paint);
-		canvas.drawBitmap(bit3, null, pic3, paint);
+		canvas.drawBitmap(bit1, pic1topx, pic1topy, null);
+		canvas.drawBitmap(bit2, pic2topx, pic2topy, null);
+		canvas.drawBitmap(bit3, pic3topx, pic3topy, null);
 	}
 
 	/**
@@ -121,25 +111,16 @@ public class DragQuestionView extends View implements VoiceViewI {
 			return;
 		} 
 		else if (answerInt == 6) {
-			pic2topx = 695;
-			pic2topy = 205;
-			pic2bottomx = 795;
-			pic2bottomy = 282;
-			pic2.set((float) pic2topx, (float) pic2topy, (float) pic2bottomx, (float) pic2bottomy);
+			pic2topx = 495;
+			pic2topy = 50;
 		} 
 		else if (answerInt == 2) {
 			pic3topx = 985;
-			pic3topy = 405;
-			pic3bottomx = 1085;
-			pic3bottomy = 482;
-			pic3.set((float) pic3topx, (float) pic3topy, (float) pic3bottomx, (float) pic3bottomy);
+			pic3topy = 150;
 		} 
 		else if (answerInt == 10) {
-			pic1topx = 405;
+			pic1topx = 205;
 			pic1topy = 305;
-			pic1bottomx = 505;
-			pic1bottomy = 382;
-			pic1.set((float) pic1topx, (float) pic1topy, (float) pic1bottomx, (float) pic1bottomy);
 		}
 	}
 
@@ -161,28 +142,22 @@ public class DragQuestionView extends View implements VoiceViewI {
 		// Find the offset between the edges and the spot its touched, so that
 		// each image is consistently dragged from the spot it was touched.
 		if (eventAction == 0) {
-			if (actionX < pic1bottomx && actionY < pic1bottomy
+			if (actionX < pic1topx+width && actionY < pic1topy+height
 					&& actionX > pic1topx && actionY > pic1topy) {
 				xtoffset = pic1topx - actionX;
 				ytoffset = pic1topy - actionY;
-				xboffset = pic1bottomx - actionX;
-				yboffset = pic1bottomy - actionY;
 				is1 = true;
 				invalidate();
-			} else if (actionX < pic2bottomx && actionY < pic2bottomy
+			} else if (actionX < pic2topx+width && actionY < pic2topy+height
 					&& actionX > pic2topx && actionY > pic2topy) {
 				xtoffset = pic2topx - actionX;
 				ytoffset = pic2topy - actionY;
-				xboffset = pic2bottomx - actionX;
-				yboffset = pic2bottomy - actionY;
 				is2 = true;
 				invalidate();
-			} else if (actionX < pic3bottomx && actionY < pic3bottomy
+			} else if (actionX < pic3topx+width && actionY < pic3topy+height
 					&& actionX > pic3topx && actionY > pic3topy) {
 				xtoffset = pic3topx - actionX;
 				ytoffset = pic3topy - actionY;
-				xboffset = pic3bottomx - actionX;
-				yboffset = pic3bottomy - actionY;
 				is3 = true;
 				invalidate();
 			}
@@ -194,20 +169,14 @@ public class DragQuestionView extends View implements VoiceViewI {
 			if (is1) {
 				pic1topx = actionX + xtoffset;
 				pic1topy = actionY + ytoffset;
-				pic1bottomx = actionX + xboffset;
-				pic1bottomy = actionY + yboffset;
 				invalidate();
 			} else if (is2) {
 				pic2topx = actionX + xtoffset;
 				pic2topy = actionY + ytoffset;
-				pic2bottomx = actionX + xboffset;
-				pic2bottomy = actionY + yboffset;
 				invalidate();
 			} else if (is3) {
 				pic3topx = actionX + xtoffset;
 				pic3topy = actionY + ytoffset;
-				pic3bottomx = actionX + xboffset;
-				pic3bottomy = actionY + yboffset;
 				invalidate();
 			}
 		}
@@ -233,22 +202,16 @@ public class DragQuestionView extends View implements VoiceViewI {
 		else if (prevAnswer == 2) {
 			pic3topx = (int) square.left;
 			pic3topy = (int) square.top;
-			pic3bottomx = (int) (pic3topx + pic3.width());
-			pic3bottomy = (int) (pic3topy + pic3.height());
 			answerInt = prevAnswer;
 		} 
 		else if (prevAnswer == 6) {
 			pic2topx = (int) square.left;
 			pic2topy = (int) square.top;
-			pic2bottomx = (int) (pic2topx + pic2.width());
-			pic2bottomy = (int) (pic2topy + pic2.height());
 			answerInt = prevAnswer;
 		}
 		 else if (prevAnswer == 10) {
 			pic1topx = (int) square.left;
 			pic1topy = (int) square.top;
-			pic1bottomx = (int) (pic1topx + pic1.width());
-			pic1bottomy = (int) (pic1topy + pic1.height());
 			answerInt = prevAnswer;
 		}
 		invalidate();
@@ -262,18 +225,17 @@ public class DragQuestionView extends View implements VoiceViewI {
 	private void grow(int num) {
 
 		if (num == 1) {
-			// Increase the y value incrementally until it hits a max size
-				pic1topy = pic1topy-231;
-				pic1bottomx = pic1bottomx + 150;
+				pic1topy = pic1topy-200;
 				pic1topx = pic1topx - 150;
+				bit1 = setUp.createScaledBitmap(bit1, 400, 308, false);
 		} else if (num == 2) {
-				pic2topy = pic2topy - 231;
-				pic2bottomx = pic2bottomx + 150;
+				pic2topy = pic2topy - 200;
 				pic2topx = pic2topx - 150;
+				bit2 = setUp.createScaledBitmap(bit2, 400, 308, false);
 		} else if (num == 3) {
-				pic3topy = pic3topy - 231;
-				pic3bottomx = pic3bottomx + 150;
+				pic3topy = pic3topy - 200;
 				pic3topx = pic3topx - 150;
+				bit3 = setUp.createScaledBitmap(bit3, 400, 308, false);
 		}
 
 	}
@@ -286,20 +248,14 @@ public class DragQuestionView extends View implements VoiceViewI {
 	 */
 	private void move(int num) {
 		if (num == 1) {
-			pic1topx =200;
-			pic1topy = 200;
-			pic1bottomx = 200;
-			pic1bottomy = 200;
+			pic1topx = -220;
+			pic1topy = -220;
 		} else if (num == 2) {
-			pic2topx = 200;
-			pic2topy = 200;
-			pic2bottomx = 200;
-			pic2bottomy = 200;
+			pic2topx = -220;
+			pic2topy = -220;
 		} else if (num == 3) {
-			pic3topx = 200;
-			pic3topy = 200;
-			pic3bottomx = 200;
-			pic3bottomy = 200;
+			pic3topx = -220;
+			pic3topy = -220;
 		}
 	}
 	/**
@@ -315,11 +271,13 @@ public class DragQuestionView extends View implements VoiceViewI {
 			grow(1);
 		}
 		if (answerInt == 6) {
+			setAnswer(6);
 			move(3);
 			move(1);
 			grow(2);
 		}
 		if (answerInt == 2) {
+			setAnswer(2);
 			move(1);
 			move(2);
 			grow(3);

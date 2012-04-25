@@ -65,11 +65,19 @@ public class SliderQuestionView extends ProgressBar implements VoiceViewI {
 	 * @return- returns the current progress value.
 	 */
 	public int getAnswer(){
+		int prog = this.getProgress();
+		if(prog ==0){
+			return -1;
+		}
 		return this.getProgress();
 	}
 	
 	public void setAnswer(int prevAnswer){
 		this.setProgress(prevAnswer);
+		if(prevAnswer == -1){
+			this.setProgress(0);
+		}
+		
 	}
 	
 	public void animate(){
