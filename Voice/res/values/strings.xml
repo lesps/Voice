@@ -16,11 +16,16 @@
     <string name="activity_newquestion"></string>
     <string name="activity_thankyou"></string>
     <string name="activity_questionactivity"></string>
+    <string name="activity_providerinformation"></string>
     <string name="thank_you_text">Thank you for taking the survey!</string>
-    <string name="acitivity_confirmation_text">Thank you for taking the survey! After you\'ve submitted your responses, you can claim your reward!</string>
+    <string name="activity_confirmation_text">Thank you for taking the survey! After you\'ve submitted your responses, you can claim your reward!</string>
     <string name="submit">Submit</string>
     <string name="activity_confirmationactivity">Voice</string>
     <string name="button_finish">Finish</string>
     <string name="button_sync">Sync</string>
+    <string name="provider_submit">Submit</string>
+    <string name="provider_info">Provider information</string>
+    <string name="provider_q">Please enter the name of this facility\'s provider:</string>
+    <string name="location_q">Please enter the this facility\'s location: </string>
 
 </resources>

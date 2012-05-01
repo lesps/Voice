@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplayQuestion" android:label="@string/activity_newquestion"></activity>
+        <activity android:name=".ProviderInformationActivity" android:label="@string/activity_providerinformation"></activity>
         <activity android:name=".ThankYouActivity" android:label="@string/activity_thankyou"></activity>
         <activity android:name=".QuestionActivity" android:label="@string/activity_questionactivity"></activity>
         <activity android:label="@string/activity_confirmationactivity" android:name=".ConfirmationActivity"></activity>

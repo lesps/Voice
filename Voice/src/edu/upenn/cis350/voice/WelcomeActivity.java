@@ -1,6 +1,7 @@
 package edu.upenn.cis350.voice;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -145,11 +146,18 @@ public class WelcomeActivity extends Activity {
 		}
 	}
 
+	public void onProviderClick(View view){
+		//Create and intent using the new activity and the class to be created (A quiz activity)
+		Intent provider_Intent = new Intent(WelcomeActivity.this, ProviderInformationActivity.class);
+
+		startActivity(provider_Intent);
+	}
+	
 	public void onContinueClick(View view){
 		//Create and intent using the new activity and the class to be created (A quiz activity)
-		Intent i = new Intent(WelcomeActivity.this, QuestionActivity.class);
+		Intent question_Intent = new Intent(WelcomeActivity.this, QuestionActivity.class);
 
-		startActivity(i);
+		startActivity(question_Intent);
 	}
 
 }
