@@ -10,6 +10,7 @@ import android.content.Context;
 
 public class ButtonQuestionView extends View implements VoiceViewI {
 	
+	private DisplayQuestion _parent;
 	private Bitmap _superHappy, _happy, _neutral, _sad, _crying, setUp;
 	private Bitmap _pressedSuperHappy, _pressedHappy, _pressedNeutral, _pressedSad, _pressedCrying;
 	private Bitmap _selected;
@@ -99,22 +100,27 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		if (eventAction==MotionEvent.ACTION_DOWN) {
 			if (x >= 300 && x <= 500 && y >= 70 && y <= 224) { 		//SuperHappy
 				_selected = _superHappy;
+				_parent.setVisible();
 				return true;
 			}
 			else if (x >= 560 && x <= 760 && y >= 160 && y <= 224) { 	//Happy
 				_selected = _happy;
+				_parent.setVisible();
 				return true;
 			}
 			else if (x >= 820 && x <= 1020 && y >= 160 && y <= 224) {	//Neutral
 				_selected = _neutral;
+				_parent.setVisible();
 				return true;
 			}
 			else if (x >= 440 && x <= 640 && y >= 380 && y <= 444) {	//Sad
 				_selected = _sad;
+				_parent.setVisible();
 				return true;
 			}
 			else if (x >= 700 && x <= 900 && y >= 380 && y <= 444) {	//Crying
 				_selected = _crying;
+				_parent.setVisible();
 				return true;
 			}
 			else return false;
@@ -195,6 +201,10 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		}
 		invalidate();
 
+	}
+	
+	public void setParent(DisplayQuestion d){
+		_parent = d;
 	}
 
 }

@@ -16,6 +16,7 @@ public class WheelQuestionView extends View implements VoiceViewI {
 	private Matrix _spinMatrix = new Matrix();
 	private float _initx, _inity = 0.0f;
 	private boolean isAnimate;
+	private DisplayQuestion _parent;
 	
 	public WheelQuestionView(Context c) {
 		super(c);
@@ -64,6 +65,7 @@ public class WheelQuestionView extends View implements VoiceViewI {
 			System.out.println(_degrees);
 		}
 
+		_parent.setVisible();
 		invalidate();
 		return true;
 	}
@@ -138,5 +140,9 @@ public class WheelQuestionView extends View implements VoiceViewI {
 	public void animate(){
 		isAnimate = true;
 		invalidate();
+	}
+	
+	public void setParent(DisplayQuestion d){
+		_parent = d;
 	}
 }

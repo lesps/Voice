@@ -3,15 +3,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
 public class DisplayQuestion extends Activity{
 	private VoiceViewI userView;
 	private TextView tview;
+	private Button nextButton;
+	private Button prevButton;
 	private String text;
 	private Type type;
 	private Integer answer;
+	private Integer number;
 
 	/**
 	 * Initialize the question to be displayed
@@ -32,38 +36,46 @@ public class DisplayQuestion extends Activity{
 		type = (Type)b.get("Type");
 		text = (String)b.get("Text");
 		answer = (Integer)b.get("Answer");
+		number = (Integer)b.get("Number");
 
 		switch(type){
 			case SLIDER:
 				setContentView(R.layout.slider);
 				userView = (VoiceViewI) findViewById(R.id.sliderQuestionView);
 				tview = (TextView) findViewById(R.id.sliderText);
+				nextButton = (Button) findViewById(R.id.sliderNext);
+				prevButton = (Button) findViewById(R.id.sliderPrev);
 				break;
 			case WHEEL:
 				setContentView(R.layout.wheel);
 				userView = (VoiceViewI) findViewById(R.id.wheelQuestionView);
 				tview = (TextView) findViewById(R.id.wheelText);
-				break;
-			case PICTURE:
-				setContentView(R.layout.picture);
-				userView = (VoiceViewI) findViewById(R.id.pictureQuestionView);
-				tview = (TextView) findViewById(R.id.pictureText);
+				nextButton = (Button) findViewById(R.id.wheelNext);
+				prevButton = (Button) findViewById(R.id.wheelPrev);
 				break;
 			case DRAG:
 				setContentView(R.layout.drag);
 				userView = (VoiceViewI) findViewById(R.id.dragQuestionView);
 				tview = (TextView) findViewById(R.id.dragText);
+				nextButton = (Button) findViewById(R.id.dragNext);
+				prevButton = (Button) findViewById(R.id.dragPrev);
 				break;
 			case BUTTON:
 				setContentView(R.layout.button);
 				userView = (VoiceViewI) findViewById(R.id.buttonQuestionView);
 				tview = (TextView) findViewById(R.id.buttonText);
+				nextButton = (Button) findViewById(R.id.buttonNext);
+				prevButton = (Button) findViewById(R.id.buttonPrev);
 				break;
 		}
 		
 		tview.setText(text);
-		
+		userView.setParent(this);  //Set reference to parent object to be caller
 		userView.setAnswer(answer);
+		if(answer < 0)
+			nextButton.setVisibility(View.GONE);
+		if(number==0)
+			prevButton.setVisibility(View.GONE);
 	}
 
 	/**
@@ -71,6 +83,15 @@ public class DisplayQuestion extends Activity{
 	 * @param view
 	 */
 	public void onBackButtonClick(View view) {
+		Intent i = new Intent();
+		i.putExtra("Answer", userView.getAnswer());
+		i.putExtra("NextQuestion", false); //Put true if moving forward
+		setResult(RESULT_OK, i);
+		finish();
+	}
+	
+	@Override
+	public void onBackPressed(){
 		Intent i = new Intent();
 		i.putExtra("Answer", userView.getAnswer());
 		i.putExtra("NextQuestion", false); //Put true if moving forward
@@ -91,6 +112,14 @@ public class DisplayQuestion extends Activity{
 		
 		setResult(RESULT_OK, i);
 		finish();
+	}
+	
+	public void setVisible(){
+		nextButton.setVisibility(View.VISIBLE);
+	}
+	
+	public void setInvisible(){
+		nextButton.setVisibility(View.GONE);
 	}
 
 }

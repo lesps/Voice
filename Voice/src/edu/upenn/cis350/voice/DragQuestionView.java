@@ -28,6 +28,7 @@ public class DragQuestionView extends View implements VoiceViewI {
 	private int ytoffset = 0;
 	private boolean is1, is2, is3, isPressed, isAnimation = false;
 	private Bitmap bit1, bit2, bit3, setUp;
+	private DisplayQuestion _parent;
 
 	public DragQuestionView(Context c) {
 		super(c);
@@ -70,6 +71,7 @@ public class DragQuestionView extends View implements VoiceViewI {
 				&& !square.intersects(pic2topx, pic2topy, pic2topx+width, pic2topy+height)
 				&& !square.intersects(pic3topx, pic3topy, pic3topx+width, pic3topy+height)) {
 			answerInt = -1;
+			_parent.setInvisible();
 		} else if (!isAnimation) {
 			// Checks intersection with each picture. Note: cant have if-else
 			// structure here because that
@@ -78,18 +80,21 @@ public class DragQuestionView extends View implements VoiceViewI {
 				if (answerInt != 10) {
 					clearSquare();
 					answerInt = 10;
+					_parent.setVisible();
 				}
 			}
 			if (square.intersects(pic2topx, pic2topy, pic2topx+width, pic2topy+height)) {
 				if (answerInt != 6) {
 					clearSquare();
 					answerInt = 6;
+					_parent.setVisible();
 				}
 			}
 			if (square.intersects(pic3topx, pic3topy, pic3topx+width, pic3topy+height)) {
 				if (answerInt != 2) {
 					clearSquare();
 					answerInt = 2;
+					_parent.setVisible();
 				}
 			}
 		}
@@ -214,6 +219,7 @@ public class DragQuestionView extends View implements VoiceViewI {
 			pic1topy = (int) square.top;
 			answerInt = prevAnswer;
 		}
+		_parent.setVisible();
 		invalidate();
 	}
 
@@ -285,6 +291,10 @@ public class DragQuestionView extends View implements VoiceViewI {
 		invalidate();
 		isAnimation = false;
 		
+	}
+	
+	public void setParent(DisplayQuestion d){
+		_parent = d;
 	}
 
 }

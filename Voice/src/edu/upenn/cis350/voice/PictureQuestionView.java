@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 	private int answerNum;
 	private ImageButton button1, button2, button3, button4;
+	private DisplayQuestion _parent;
 	
 	public PictureQuestionView(Context c) {
 		super(c);
@@ -86,5 +87,9 @@ public class PictureQuestionView extends LinearLayout implements VoiceViewI{
 	
 	public void animate(){
 		
+	}
+	
+	public void setParent(DisplayQuestion d){
+		d = _parent;
 	}
 }

@@ -9,7 +9,8 @@ public interface VoiceViewI {
 	
 	/**
 	 * Accepts an answer in the range of 0 to 10 and sets the corresponding
-	 * VoiceView to visualize that answer
+	 * VoiceView to visualize that answer. Also must call setVisible() on the 
+	 * parent activity.
 	 * @param i The answer to be visualized
 	 */
 	public void setAnswer(int i);
@@ -20,4 +21,11 @@ public interface VoiceViewI {
 	 * the control to the calling function.
 	 */
 	public void animate();
+	
+	/**
+	 * Set a pointer to the parent activity. This will be used to set the next 
+	 * button to visible after an answer has been set.
+	 * @param d A reference to the parent DisplayQuestion object
+	 */
+	public void setParent(DisplayQuestion d);
 }

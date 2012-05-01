@@ -49,7 +49,7 @@
         android:gravity="fill" >
 
         <Button
-            android:id="@+id/back"
+            android:id="@+id/wheelPrev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
@@ -66,7 +66,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/wheelNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"

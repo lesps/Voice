@@ -29,7 +29,7 @@ public class QuestionActivity extends Activity {
 		
 		_totalScore = 0; 
 		_dataManager = new DBManager(this);
-		
+		_questionList = null;
 		try{
 			_dataManager.open();
 			_questionList = _dataManager.getAllQuestions();
@@ -37,7 +37,7 @@ public class QuestionActivity extends Activity {
 		} catch(SQLiteException e){
 			e.printStackTrace();
 		}
-		if(_questionList==null)
+		if(_questionList==null||_questionList.isEmpty())
 			loadDefaultQuestions();
 		_numQuestion = -1;
 		switchQuestion(true);
@@ -77,6 +77,7 @@ public class QuestionActivity extends Activity {
 		i.putExtra("Type", _currentQuestion.getType());
 		i.putExtra("Text", _currentQuestion.getText());
 		i.putExtra("Answer", new Integer(_currentQuestion.getAnswer()));
+		i.putExtra("Number", _numQuestion);
 		startActivityForResult(i, QuestionActivity.ACTIVITY_NewQuestion);
 	}
 

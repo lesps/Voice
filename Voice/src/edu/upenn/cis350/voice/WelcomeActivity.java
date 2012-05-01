@@ -40,8 +40,12 @@ public class WelcomeActivity extends Activity {
 		} catch(SQLiteException e){}
 		setContentView(R.layout.welcome);
 		
-		//Sync with parse every 5 minutes
-		long interval = 10*1*1000;
+		//Perform a sync with parse on application load
+		synchronizeQuestions();
+		synchronizeAnswers();
+		
+		//Sync with parse every 3 minutes 
+		long interval = 3*60*1000;
 		synchTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {

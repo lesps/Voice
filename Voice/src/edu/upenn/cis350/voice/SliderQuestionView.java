@@ -11,6 +11,8 @@ public class SliderQuestionView extends ProgressBar implements VoiceViewI {
 	 private OnProgressChangeListener listener;
 	 
      private static int padding = 2;
+     
+     private DisplayQuestion _parent;
 
      public interface OnProgressChangeListener {
              void onProgressChanged(View v, int progress);
@@ -55,7 +57,7 @@ public class SliderQuestionView extends ProgressBar implements VoiceViewI {
 				listener.onProgressChanged(this, progress);
 				}
 			}
-
+		_parent.setVisible();
 		return true;
 	}
 
@@ -76,12 +78,18 @@ public class SliderQuestionView extends ProgressBar implements VoiceViewI {
 		this.setProgress(prevAnswer);
 		if(prevAnswer == -1){
 			this.setProgress(0);
+		} else{
+			_parent.setVisible();
 		}
 		
 	}
 	
 	public void animate(){
 		
+	}
+	
+	public void setParent(DisplayQuestion d){
+		_parent = d;
 	}
 
 }
