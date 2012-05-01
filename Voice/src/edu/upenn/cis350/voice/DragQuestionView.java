@@ -21,7 +21,7 @@ public class DragQuestionView extends View implements VoiceViewI {
 	private int pic1topy = 305;
 	private int pic2topy = 50;
 	private int pic3topy = 150;
-	private int height = 154;
+	private int height = 165;
 	private int width = 200;
 	private int answerInt=-1;
 	private int xtoffset = 0;
@@ -232,15 +232,15 @@ public class DragQuestionView extends View implements VoiceViewI {
 
 		if (num == 1) {
 				pic1topy = pic1topy-200;
-				pic1topx = pic1topx - 150;
+				pic1topx = pic1topx - 165;
 				bit1 = setUp.createScaledBitmap(bit1, 400, 308, false);
 		} else if (num == 2) {
 				pic2topy = pic2topy - 200;
-				pic2topx = pic2topx - 150;
+				pic2topx = pic2topx - 165;
 				bit2 = setUp.createScaledBitmap(bit2, 400, 308, false);
 		} else if (num == 3) {
 				pic3topy = pic3topy - 200;
-				pic3topx = pic3topx - 150;
+				pic3topx = pic3topx - 165;
 				bit3 = setUp.createScaledBitmap(bit3, 400, 308, false);
 		}
 

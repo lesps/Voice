@@ -72,13 +72,13 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		else
 			canvas.drawBitmap(_neutral, 820, 70, null);
 		if (_selected == _sad)
-			canvas.drawBitmap(_pressedSad, 440, 290, null);
+			canvas.drawBitmap(_pressedSad, 440, 295, null);
 		else
-			canvas.drawBitmap(_sad, 440, 290, null);
+			canvas.drawBitmap(_sad, 440, 295, null);
 		if (_selected == _crying)
-			canvas.drawBitmap(_pressedCrying, 700, 290, null);
+			canvas.drawBitmap(_pressedCrying, 700, 295, null);
 		else
-			canvas.drawBitmap(_crying, 700, 290, null);
+			canvas.drawBitmap(_crying, 700, 295, null);
 		}
 		if(animate){
 			canvas.drawBitmap(lastDrawn, 470, 100, null);
@@ -98,27 +98,27 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		float y = event.getY();
 		
 		if (eventAction==MotionEvent.ACTION_DOWN) {
-			if (x >= 300 && x <= 500 && y >= 70 && y <= 224) { 		//SuperHappy
+			if (x >= 300 && x <= 500 && y >= 70 && y <= 235) { 		//SuperHappy
 				_selected = _superHappy;
 				_parent.setVisible();
 				return true;
 			}
-			else if (x >= 560 && x <= 760 && y >= 160 && y <= 224) { 	//Happy
+			else if (x >= 560 && x <= 760 && y >= 160 && y <= 235) { 	//Happy
 				_selected = _happy;
 				_parent.setVisible();
 				return true;
 			}
-			else if (x >= 820 && x <= 1020 && y >= 160 && y <= 224) {	//Neutral
+			else if (x >= 820 && x <= 1020 && y >= 160 && y <= 235) {	//Neutral
 				_selected = _neutral;
 				_parent.setVisible();
 				return true;
 			}
-			else if (x >= 440 && x <= 640 && y >= 380 && y <= 444) {	//Sad
+			else if (x >= 440 && x <= 640 && y >= 295 && y <= 530) {	//Sad
 				_selected = _sad;
 				_parent.setVisible();
 				return true;
 			}
-			else if (x >= 700 && x <= 900 && y >= 380 && y <= 444) {	//Crying
+			else if (x >= 700 && x <= 900 && y >= 295 && y <= 530) {	//Crying
 				_selected = _crying;
 				_parent.setVisible();
 				return true;
