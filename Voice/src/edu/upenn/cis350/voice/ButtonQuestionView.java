@@ -16,7 +16,7 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 	private Bitmap _selected;
 	private Bitmap lastDrawn;
 	private boolean animate;
-	private int width=200, height=154;
+	private int width=200, height=155;
 	
 	public ButtonQuestionView(Context c) {
 		super(c);
@@ -98,27 +98,27 @@ public class ButtonQuestionView extends View implements VoiceViewI {
 		float y = event.getY();
 		
 		if (eventAction==MotionEvent.ACTION_DOWN) {
-			if (x >= 300 && x <= 500 && y >= 70 && y <= 235) { 		//SuperHappy
+			if (x >= 300 && x <= 500 && y >= 70 && y <= 225) { 		//SuperHappy
 				_selected = _superHappy;
 				_parent.setVisible();
 				return true;
 			}
-			else if (x >= 560 && x <= 760 && y >= 160 && y <= 235) { 	//Happy
+			else if (x >= 560 && x <= 760 && y >= 70 && y <= 225) { 	//Happy
 				_selected = _happy;
 				_parent.setVisible();
 				return true;
 			}
-			else if (x >= 820 && x <= 1020 && y >= 160 && y <= 235) {	//Neutral
+			else if (x >= 820 && x <= 1020 && y >= 70 && y <= 225) {	//Neutral
 				_selected = _neutral;
 				_parent.setVisible();
 				return true;
 			}
-			else if (x >= 440 && x <= 640 && y >= 295 && y <= 530) {	//Sad
+			else if (x >= 440 && x <= 640 && y >= 295 && y <= 450) {	//Sad
 				_selected = _sad;
 				_parent.setVisible();
 				return true;
 			}
-			else if (x >= 700 && x <= 900 && y >= 295 && y <= 530) {	//Crying
+			else if (x >= 700 && x <= 900 && y >= 295 && y <= 450) {	//Crying
 				_selected = _crying;
 				_parent.setVisible();
 				return true;
