@@ -171,13 +171,6 @@ public class WelcomeActivity extends Activity {
 		}
 	}
 
-	public void onProviderClick(View view){
-		//Create and intent using the new activity and the class to be created (A quiz activity)
-		Intent provider_Intent = new Intent(WelcomeActivity.this, ProviderInformationActivity.class);
-
-		startActivity(provider_Intent);
-	}
-	
 	public void onContinueClick(View view){
 		//Create and intent using the new activity and the class to be created (A quiz activity)
 		Intent question_Intent = new Intent(WelcomeActivity.this, QuestionActivity.class);

@@ -20,7 +20,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="40pt" />
     </LinearLayout>
-
+
     <Button
         android:id="@+id/button1"
         android:layout_width="646dp"
@@ -36,14 +36,6 @@
         android:layout_height="wrap_content" >
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/provider_info"
-        android:onClick =  "onProviderClick"
-        android:layout_marginTop="30pt"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"

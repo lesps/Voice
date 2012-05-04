@@ -23,9 +23,5 @@
     <string name="activity_confirmationactivity">Voice</string>
     <string name="button_finish">Finish</string>
     <string name="button_sync">Sync</string>
-    <string name="provider_submit">Submit</string>
-    <string name="provider_info">Provider information</string>
-    <string name="provider_q">Please enter the name of this facility\'s provider:</string>
-    <string name="location_q">Please enter the this facility\'s location: </string>
 
 </resources>
