@@ -131,4 +131,12 @@ public class QuestionActivity extends Activity {
 		Intent i = new Intent(this, ThankYouActivity.class);
 		startActivity(i);
 	}
+	
+	public ArrayList<Question> getQuestionList() {
+		return _questionList;
+	}
+	
+	public int getNumQuestion() {
+		return _numQuestion;
+	}
 }
