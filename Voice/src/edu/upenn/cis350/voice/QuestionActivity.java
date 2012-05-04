@@ -1,6 +1,7 @@
 package edu.upenn.cis350.voice;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import edu.upenn.cis350.voice.db.DBManager;
 
@@ -23,6 +24,9 @@ public class QuestionActivity extends Activity {
 	private Question _currentQuestion;
 	private int _numQuestion;
 
+	/**
+	 * Initialize the _questionList based on entries in the database.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +43,7 @@ public class QuestionActivity extends Activity {
 		}
 		if(_questionList==null||_questionList.isEmpty())
 			loadDefaultQuestions();
+		Collections.sort(_questionList); //Sort the _questionList by number
 		_numQuestion = -1;
 		switchQuestion(true);
 	}	
@@ -81,6 +86,10 @@ public class QuestionActivity extends Activity {
 		startActivityForResult(i, QuestionActivity.ACTIVITY_NewQuestion);
 	}
 
+	/**
+	 * Perform actions when activities called for result return. Here, either switch
+	 * questions forward or backward, or move to ThankYouActivity.
+	 */
 	public void onActivityResult(int requestCode, int resultCode, Intent intent){
 		super.onActivityResult(requestCode, resultCode, intent);
 

@@ -25,16 +25,27 @@ public class DBManager {
 	public DBManager(Context context){
 		dbHelper = new DBHelper(context);
 	}
-	//Opens up the database
+	
+	/**
+	 * Opens the database
+	 * @throws SQLException If not successful
+	 */
 	public void open() throws SQLException{
 		database = dbHelper.getWritableDatabase();
 	}
-	//Closes the database
+	
+	/**
+	 * Closes the database
+	 */
 	public void close() {
 		dbHelper.close();
 	}
 	
-	//Method to add questions. Returns -1 if not successful
+	/**
+	 * Add a question to the database
+	 * @param entry The entry to be added to the database
+	 * @return The output from the database (-1 if not successful)
+	 */
 	public long insertQuestion(Question entry){
 		ContentValues values = new ContentValues();
 		values.put("number", entry.getNumber());
@@ -43,6 +54,12 @@ public class DBManager {
 		return database.insert(DBHelper.QUS_TABLE, null, values);
 	}
 	
+	/**
+	 * Insert an answer into the database
+	 * @param cachenum The cache number
+	 * @param answer A CSV string representing all the answers
+	 * @return The output from the database (-1 if not successful)
+	 */
 	public long insertAnswer(int cachenum, String answer){
 		ContentValues values = new ContentValues();
 		values.put("cachenum", cachenum);
@@ -50,22 +67,33 @@ public class DBManager {
 		return database.insert(DBHelper.ANS_TABLE, null, values);
 	}
 	
-	//Method to delete entries
+	/**
+	 * Delete a particular question from the database
+	 * @param entry The question to be deleted
+	 */
 	public void deleteQuestion(Question entry){
 		database.delete(DBHelper.QUS_TABLE, "question = " + entry.getText() , null);
 	}
 
-	//Method to delete all questions
+	/**
+	 * Delete all questions from the database
+	 */
 	public void deleteAllQuestions(){
 		database.delete(DBHelper.QUS_TABLE, null , null);
 	}
 	
-	//Method to delete all answers
+	/**
+	 * Delete all answers from the database
+	 */
 	public void deleteAllAnswers(){
 		database.delete(DBHelper.ANS_TABLE, null, null);
 	}
 	
-	//Method to get all questions of a certain type
+	/**
+	 * Get all questions of type t
+	 * @param t The type to be gotten
+	 * @return An array list of questions of type T
+	 */
 	public ArrayList<Question> getQuestionsOfType(Type t){
 		ArrayList<Question> questions= new ArrayList<Question>();
 		Cursor cursor = database.query(DBHelper.QUS_TABLE, querycolumns, "type = " + t.name(), null, null, null, null);
@@ -82,7 +110,6 @@ public class DBManager {
 	
 	/**
 	 * This method retrieves all the questions stored in the SQLite Database
-	 * 
 	 * @param none
 	 * @return - Returns an ArrayList of Questions. 
 	 */	
@@ -100,7 +127,10 @@ public class DBManager {
 		return questions;
 	}
 	
-	//Method to get all answers
+	/**
+	 * Get a string-based list of all the answers
+	 * @return An array list containing all the answers
+	 */
 	public ArrayList<String> getAllAnswers(){
 		ArrayList<String> answers = new ArrayList<String>();
 		Cursor cursor = database.query(DBHelper.ANS_TABLE, queryColsAns, null, null, null, null, null);
@@ -114,7 +144,10 @@ public class DBManager {
 		return answers;
 	}
 	
-	//Method to get current number of answers
+	/**
+	 * Gets the cache size
+	 * @return The size of the answer cache
+	 */
 	public int getAnswerCacheSize(){
 		Cursor cursor = database.query(DBHelper.ANS_TABLE, queryColsAns, null, null, null, null, null);
 		int num = 0;

@@ -20,14 +20,15 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String QUS_TABLE = "questions";
 	public static final String ANS_TABLE = "answers";
 
-	//Not sure what this value means, will look into it later
 	private static final int DATABASE_VERSION = 1;
-	// Database creation sql statement
+	
+	//Statement to create questions table
 	private static final String DATABASE_CREATE = 
 			"create table " + QUS_TABLE +
 			"(number smallint, question varchar, type varchar);";
 	
 	
+	//Statement to create answers table
 	private static final String ANSWERS_DATABASE_CREATE = 
 			"create table " + ANS_TABLE +
 			"(cachenum smallint, answer varchar)";
@@ -38,6 +39,9 @@ public class DBHelper extends SQLiteOpenHelper {
 		super(context, DB_NAME, null, DATABASE_VERSION);
 	}
 
+	/**
+	 * Creates the SQLite table if it does not already exist
+	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		//Executes query to create db
@@ -45,6 +49,9 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(ANSWERS_DATABASE_CREATE);
 	}
 
+	/**
+	 * Handles upgrade commands for SQLite database
+	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		//drops db and creates a new one

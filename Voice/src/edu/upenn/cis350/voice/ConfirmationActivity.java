@@ -19,6 +19,17 @@ public class ConfirmationActivity extends Activity{
 		finish();
 	}
 	
+	/**
+	 * Override hardware back button functionality
+	 */
+	@Override
+	public void onBackPressed(){
+		Intent i = new Intent();
+		i.putExtra("Submit", false);
+		setResult(RESULT_OK, i);
+		finish();
+	}
+	
 	public void onSubmitButtonClick(View view){
 		Intent i = new Intent();
 		i.putExtra("Submit", true);

@@ -17,4 +17,12 @@ public class ThankYouActivity extends Activity {
 		Intent i = new Intent(this, WelcomeActivity.class);
 		startActivity(i);
 	}
+	
+	/**
+	 * Overrides back to do nothing when pressed while on this screen
+	 */
+	@Override
+	public void onBackPressed(){
+		return;
+	}
 }

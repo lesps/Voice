@@ -19,6 +19,10 @@ public class VoiceCallback extends FindCallback {
 		_caller = caller;
 	}
 	
+	/**
+	 * Called when callback completes; this will update the local database with
+	 * the ParseObjects returned by the query.
+	 */
 	public void done(List<ParseObject> objects, ParseException e){
 		if(e==null)
 			_caller.updateQuestions(objects);

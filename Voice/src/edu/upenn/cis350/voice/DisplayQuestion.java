@@ -18,7 +18,8 @@ public class DisplayQuestion extends Activity{
 	private Integer number;
 
 	/**
-	 * Initialize the question to be displayed
+	 * Initialize the question to be displayed; this depends on information
+	 * passed in by the QuestionActivity.
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -90,6 +91,9 @@ public class DisplayQuestion extends Activity{
 		finish();
 	}
 	
+	/**
+	 * Override hardware back button functionality
+	 */
 	@Override
 	public void onBackPressed(){
 		Intent i = new Intent();
@@ -114,10 +118,16 @@ public class DisplayQuestion extends Activity{
 		finish();
 	}
 	
+	/**
+	 * Set next button to be visible
+	 */
 	public void setVisible(){
 		nextButton.setVisibility(View.VISIBLE);
 	}
 	
+	/**
+	 * Set next button to be invisible
+	 */
 	public void setInvisible(){
 		nextButton.setVisibility(View.GONE);
 	}

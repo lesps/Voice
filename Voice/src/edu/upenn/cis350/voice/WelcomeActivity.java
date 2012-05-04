@@ -30,10 +30,14 @@ public class WelcomeActivity extends Activity {
 
 	private Timer synchTimer = new Timer();
 	
-	/** Called when the activity is first created. */
+	/**
+	 *Called when the activity is first created. Initializes parse and synchronizes
+	 *with parse.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//Initialize the connection to parse
 		Parse.initialize(this, "pPpqQgvXPcLhyGUNTD7ktBhXEsMWVybkyq89kamw",
 		"5GMEKejNwtcqJBSO6G4gcvjbD2mC6dgMi3XdgnQY");
 		try{
@@ -46,7 +50,7 @@ public class WelcomeActivity extends Activity {
 		synchronizeAnswers();
 		
 		//Sync with parse every 3 minutes 
-		long interval = 3*60*1000;
+		long interval = 3*1000;
 		synchTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {
@@ -55,6 +59,9 @@ public class WelcomeActivity extends Activity {
 		}, 0,interval);
 	}
 	
+	/**
+	 * Automatically sync with parse
+	 */
 	private void AutoSync()
 	{
 		this.runOnUiThread(new Runnable() {
@@ -64,8 +71,12 @@ public class WelcomeActivity extends Activity {
 			}
 		});
 	}
-
 	
+	/**
+	 * Parse out individual answers from a comma separated string
+	 * @param ans A comma-separated string representing all the answers
+	 * @return An ArrayList containing the answers to the questions in order
+	 */
 	public ArrayList<Integer> parseAnswer(String ans){
 		Scanner scan = new Scanner(ans);
 		scan.useDelimiter(","); //For CSV string
@@ -74,8 +85,10 @@ public class WelcomeActivity extends Activity {
 			answers.add(Integer.parseInt(scan.next()));
 		return answers;
 	}
+	
 	/**
-	 * Synchronize with the Parse database
+	 * Synchronize answers with the Parse database as a series of columns of the 
+	 * form Answer_X, where X is the number of the question
 	 */
 	public void synchronizeAnswers(){
 		try{
@@ -94,6 +107,11 @@ public class WelcomeActivity extends Activity {
 		}catch(SQLiteException e){}
 	}
 
+	/**
+	 * Construct a question from a ParseObject
+	 * @param p	The ParseObject to get the question from
+	 * @return A constructed question object
+	 */
 	public Question constructQuestion(ParseObject p){
 		String text = p.getString("Text");
 		if(text==null)
@@ -120,6 +138,9 @@ public class WelcomeActivity extends Activity {
 		return new Question(num, text, t);
 	}
 
+	/**
+	 * Synchronize questions from Parse with the local database
+	 */
 	public void synchronizeQuestions(){
 		ParseQuery query = new ParseQuery("Question");
 		VoiceCallback callback = new VoiceCallback(this);
@@ -127,6 +148,10 @@ public class WelcomeActivity extends Activity {
 		
 	}
 	
+	/**
+	 * Update questions in the database after the callback finishes executing
+	 * @param list The list of parse objects returned by the callback file
+	 */
 	public void updateQuestions(List<ParseObject> list){
 		ArrayList<Question> qlist = new ArrayList<Question>();
 		Iterator<ParseObject> iter = list.iterator();
